@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('title')
-Muertissima
+Muertissima - Shows
 @endsection
 
 @section('header')
@@ -14,7 +14,7 @@ Muertissima
 
 @section('content')
 @foreach($posts as $post)
-    @if($post->isEvent() || !$post->hasMessage())
+    @if(!$post->isEvent())
         @continue;
     @endif
 

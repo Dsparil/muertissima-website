@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\FBPost;
 use App\Helpers\GraphHelper;
 
-class HomeController extends Controller
+class ShowsController extends Controller
 {
     public function index(Request $request)
     {
@@ -17,8 +17,8 @@ class HomeController extends Controller
             abort(500, 'Erreur dans la récupération des données.');
         }
 
-        return view('home', [
-            'page'  => 'home',
+        return view('shows', [
+            'page'  => 'shows',
             'posts' => FBPost::hydrateFromSource($posts->data)
         ]);
     }

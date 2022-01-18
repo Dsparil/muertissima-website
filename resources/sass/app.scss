@@ -6,3 +6,48 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+body {
+    background-color: #000;
+    background-image: url('../images/muertissima_body.jpg');
+    @media (max-width: 430px) {
+        background-image: none !important;
+    }
+    background-position: -10% 0;
+    color: #fff;
+}
+
+div.mainContainer {
+    background-color: #000;
+}
+
+img.header {
+    width: 60%;
+    margin: 0 auto;
+}
+
+div.post {
+    margin-top: 1em;
+    margin-bottom: 4em;
+    padding-bottom: 2em;
+    background-image: url('../images/separator.png');
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+}
+
+.date {
+    text-align: right !important;
+    font-style: italic;
+}
+
+.navBackground {
+    background-image: url('../images/muertissima_nav.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 0 60%;
+}
+
+.nav-item {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
