@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{HomeController, ShowsController};
+use App\Http\Controllers\{HomeController, ShowsController, MusicController};
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +16,4 @@ use App\Http\Controllers\{HomeController, ShowsController};
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/shows', [ShowsController::class, 'index'])->name('shows');
+Route::get('/music', [MusicController::class, 'index'])->name('music');

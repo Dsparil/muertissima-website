@@ -22,7 +22,7 @@ div.mainContainer {
 }
 
 img.header {
-    width: 60%;
+    width: 40%;
     margin: 0 auto;
 }
 
@@ -50,4 +50,7 @@ div.post {
 .nav-item {
     font-weight: bold;
     font-size: 1.5rem;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 20px;
+    margin-right: 1em;
 }

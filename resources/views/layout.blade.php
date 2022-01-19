@@ -30,7 +30,7 @@
                                     <a class="nav-link{{ $page == 'shows'? ' active' : '' }}" href="{{ route('shows') }}">Shows</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Music</a>
+                                    <a class="nav-link{{ $page == 'music'? ' active' : '' }}" href="{{ route('music') }}">Music</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="https://muertissima.bandcamp.com/merch">Shop</a>
