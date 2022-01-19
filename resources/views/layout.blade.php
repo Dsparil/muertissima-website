@@ -31,6 +31,9 @@
                             <a class="nav-link{{ $page == 'shows'? ' active' : '' }}" href="{{ route('shows') }}">💀 Shows</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link{{ $page == 'photos'? ' active' : '' }}" href="{{ route('photos') }}">💀 Photos</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link{{ $page == 'music'? ' active' : '' }}" href="{{ route('music') }}">💀 Music</a>
                         </li>
                         <li class="nav-item">

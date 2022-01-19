@@ -19,7 +19,7 @@ class HomeController extends Controller
 
         return view('home', [
             'page'  => 'home',
-            'posts' => FBPost::hydrateFromSource($posts->data)
+            'posts' => FBPost::hydrateFromSource($posts->data, 'isHomePost')
         ]);
     }
 }

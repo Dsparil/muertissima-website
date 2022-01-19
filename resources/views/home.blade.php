@@ -14,13 +14,6 @@ Muertissima
 
 @section('content')
 @foreach($posts as $post)
-    @if($post->isEvent() || !$post->hasMessage())
-        @continue;
-    @endif
-
-    @if(!$post->hasMessage() && !$post->hasDisplayableAttachments())
-        @continue;
-    @endif
     @include('partials.post', ['post' => $post])
 @endforeach
 @endsection

@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('title')
-Muertissima - Shows
+Muertissima - Photos
 @endsection
 
 @section('header')

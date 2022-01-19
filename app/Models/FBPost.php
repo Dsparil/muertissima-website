@@ -20,6 +20,8 @@ class FBPost extends AbstractHydratableModel
 
     private $isEvent = false;
 
+    private $isPhoto = false;
+
     private static $urlRegexp = "@(https?://([-\w\.]+[-\w])+(:\d+)?(/([\w/_\.#-]*(\?\S+)?[^\.\s])?).*$)@";
 
     /**
@@ -31,6 +33,35 @@ class FBPost extends AbstractHydratableModel
     {
         $this->buildBasicInfo($data);
         $this->buildAttachments($data->attachments->data);
+    }
+
+    public function isHomePost(): bool
+    {
+        return  !$this->isEvent() && 
+                !$this->isPhoto() && (
+                    $this->hasMessage() || 
+                    $this->hasDisplayableAttachments()
+                );
+    }
+
+    public function isPhoto(): bool
+    {
+        return $this->isPhoto;
+    }
+
+    public function isEvent(): bool
+    {
+        return $this->isEvent;
+    }
+
+    public function hasMessage(): bool
+    {
+        return $this->hasMessage;
+    }
+
+    public function hasDisplayableAttachments(): bool
+    {
+        return $this->hasDisplayableAttachments;
     }
 
     private function buildBasicInfo(\StdClass $data)
@@ -60,28 +91,16 @@ class FBPost extends AbstractHydratableModel
             }
         }
 
+        $this->isPhoto = count($this->attachments) > 1;
+
         foreach ($this->attachments as $attachment) {
             if ($attachment->isDisplayable()) {
                 $this->hasDisplayableAttachments = true;
             }
+
             if ($attachment->type == 'event') {
                 $this->isEvent = true;
             }
         }
-    }
-
-    public function isEvent(): bool
-    {
-        return $this->isEvent;
-    }
-
-    public function hasMessage(): bool
-    {
-        return $this->hasMessage;
-    }
-
-    public function hasDisplayableAttachments(): bool
-    {
-        return $this->hasDisplayableAttachments;
     }
 }

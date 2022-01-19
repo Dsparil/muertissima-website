@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\FBPost;
 use App\Helpers\GraphHelper;
 
-class ShowsController extends Controller
+class PhotosController extends Controller
 {
     public function index(Request $request)
     {
@@ -18,8 +18,8 @@ class ShowsController extends Controller
         }
 
         return view('shows', [
-            'page'  => 'shows',
-            'posts' => FBPost::hydrateFromSource($posts->data, 'isEvent')
+            'page'  => 'photos',
+            'posts' => FBPost::hydrateFromSource($posts->data, 'isPhoto')
         ]);
     }
 }
