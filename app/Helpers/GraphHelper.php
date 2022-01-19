@@ -21,7 +21,7 @@ class GraphHelper
     public static function getPosts()
     {
         $fields = self::buildFields([
-            'attachments{target,media_type,media,url}',
+            'attachments{target,media_type,media,url,subattachments}',
             'message',
             'created_time'
         ]);

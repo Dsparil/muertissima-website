@@ -32,7 +32,7 @@ class FBAttachment extends AbstractHydratableModel
 
     private function buildBasicInfo(\StdClass $data)
     {
-        $this->type = $data->media_type;
+        $this->type = $data->media_type ?? $data->type;
 
         if (isset($data->target)) {
             $this->url = trim($data->target->url);

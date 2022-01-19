@@ -51,6 +51,15 @@ class FBPost extends AbstractHydratableModel
     {
         $this->attachments = FBAttachment::hydrateFromSource($data);
 
+        foreach ($data as $subdata) {
+            if (isset($subdata->subattachments)) {
+                $this->attachments = array_merge(
+                    $this->attachments,
+                    FBAttachment::hydrateFromSource($subdata->subattachments->data)
+                );
+            }
+        }
+
         foreach ($this->attachments as $attachment) {
             if ($attachment->isDisplayable()) {
                 $this->hasDisplayableAttachments = true;

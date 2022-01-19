@@ -8,9 +8,11 @@
     <div class="row">
         @if($post->hasDisplayableAttachments())
         <div class="col-4">
-            @foreach($post->attachments as $attachment)
-                @include('partials.attachment', ['attachment' => $attachment])
-            @endforeach
+            @if(count($post->attachments) > 1)
+                @include('partials.carousel', ['post' => $post, 'id' => uniqid()])
+            @else
+                @include('partials.attachment', ['attachment' => $post->attachments[0]])
+            @endif
         </div>
         @endif
         @if($post->hasMessage())
