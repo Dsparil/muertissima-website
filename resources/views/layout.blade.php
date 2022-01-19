@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link href="{{ asset('css/app.css') }}" rel="stylesheet" />
+        <script type="text/javascript" src="{{ asset('js/app.js') }}" defer></script>
         <title>
             @yield('title')
         </title>
@@ -37,7 +38,7 @@
                             <a class="nav-link{{ $page == 'music'? ' active' : '' }}" href="{{ route('music') }}">💀 Music</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="https://muertissima.bandcamp.com/merch">💀 Shop</a>
+                            <a class="nav-link{{ $page == 'products'? ' active' : '' }}" href="{{ route('shop') }}">💀 Shop</a>
                         </li>
                     </ul>
                 </div>
@@ -45,6 +46,5 @@
             @endif
             @yield('content')
         </div>
-        <script src="{{ asset('js/app.js') }}"></script>
     </body>
 </html>

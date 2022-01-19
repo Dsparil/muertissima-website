@@ -5,7 +5,8 @@ use App\Http\Controllers\{
     HomeController, 
     ShowsController, 
     MusicController,
-    PhotosController
+    PhotosController,
+    ShopController
 };
 
 /*
@@ -23,3 +24,4 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/shows', [ShowsController::class, 'index'])->name('shows');
 Route::get('/photos', [PhotosController::class, 'index'])->name('photos');
 Route::get('/music', [MusicController::class, 'index'])->name('music');
+Route::get('/shop', [ShopController::class, 'index'])->name('shop');
