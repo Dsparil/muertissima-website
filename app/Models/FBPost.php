@@ -20,8 +20,6 @@ class FBPost extends AbstractHydratableModel
 
     private $isEvent = false;
 
-    private $isPhoto = false;
-
     private static $urlRegexp = "@(https?://([-\w\.]+[-\w])+(:\d+)?(/([\w/_\.#-]*(\?\S+)?[^\.\s])?).*$)@";
 
     public static $displayedEvents = [];
@@ -51,7 +49,11 @@ class FBPost extends AbstractHydratableModel
 
     public function isPhoto(): bool
     {
-        return $this->isPhoto;
+        return  is_array($this->attachments) &&
+                count($this->attachments) > 3 &&
+                $this->hasMessage() &&
+                strpos($this->content, 'bandcamp') === false
+        ;
     }
 
     public function isEvent(): bool
@@ -95,8 +97,6 @@ class FBPost extends AbstractHydratableModel
                 );
             }
         }
-
-        $this->isPhoto = count($this->attachments) > 3;
 
         foreach ($this->attachments as $attachment) {
             if ($attachment->isDisplayable()) {
