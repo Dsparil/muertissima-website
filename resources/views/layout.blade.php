@@ -25,16 +25,16 @@
                 <div class="collapse navbar-collapse" id="navissima">
                     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link{{ $page == 'home'? ' active' : '' }}" aria-current="page" href="{{ route('home') }}">Home</a>
+                            <a class="nav-link{{ $page == 'home'? ' active' : '' }}" aria-current="page" href="{{ route('home') }}">💀 Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link{{ $page == 'shows'? ' active' : '' }}" href="{{ route('shows') }}">Shows</a>
+                            <a class="nav-link{{ $page == 'shows'? ' active' : '' }}" href="{{ route('shows') }}">💀 Shows</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link{{ $page == 'music'? ' active' : '' }}" href="{{ route('music') }}">Music</a>
+                            <a class="nav-link{{ $page == 'music'? ' active' : '' }}" href="{{ route('music') }}">💀 Music</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="https://muertissima.bandcamp.com/merch">Shop</a>
+                            <a class="nav-link" href="https://muertissima.bandcamp.com/merch">💀 Shop</a>
                         </li>
                     </ul>
                 </div>

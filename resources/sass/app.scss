@@ -53,6 +53,10 @@ div.post {
     background-color: rgba(0, 0, 0, 0.8);
     border-radius: 20px;
     margin-right: 1em;
+
+    .active {
+        color: #f1c232 !important;
+    }
 }
 
 a {
