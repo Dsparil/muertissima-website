@@ -16,7 +16,7 @@ Muertissima
 @foreach($posts as $post)
     @include('partials.post', [
         'post'     => $post,
-        'leftCol'  => 3,
+        'leftCol'  => 'sm-3',
         'rightCol' => 9
     ])
 @endforeach

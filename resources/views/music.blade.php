@@ -14,5 +14,8 @@ Muertissima - Music
 
 @section('content')
 <h1>Vidéos officielles</h1>
-<iframe width="70%" height="400" src="https://www.youtube.com/embed/videoseries?list=PLw7pVxcIGgTxnwtTtMO_I-jtopB_aXuL6" title="Vidéos officielles" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="row">
+    <div class="col-lg-8">
+        <iframe width="100%" height="400" src="https://www.youtube.com/embed/videoseries?list=PLw7pVxcIGgTxnwtTtMO_I-jtopB_aXuL6" title="Vidéos officielles" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
 @endsection

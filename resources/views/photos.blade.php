@@ -16,8 +16,8 @@ Muertissima - Photos
 @foreach($posts as $post)
     @include('partials.post', [
         'post'     => $post,
-        'leftCol'  => 10,
-        'rightCol' => 12
+        'leftCol'  => 'md-7',
+        'rightCol' => 'md-5'
     ])
 @endforeach
 

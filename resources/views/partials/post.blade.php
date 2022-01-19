@@ -7,7 +7,7 @@
 
     <div class="row">
         @if($post->hasDisplayableAttachments())
-        <div class="col-{{ $leftCol ?? '4' }}">
+        <div class="col-{{ $leftCol ?? 'sm-4' }}">
             @if(count($post->attachments) > 1)
                 @include('partials.carousel', ['post' => $post, 'id' => uniqid()])
             @else

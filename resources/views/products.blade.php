@@ -16,7 +16,7 @@ Muertissima - Merch
 <h1>Merch</h1>
 <div class="row">
     @foreach($products as $product)
-    <div class="col-3">
+    <div class="col-sm-6 col-md-4 col-lg-3">
         <a href="{{ $product->url }}">
         <div class="card bg-dark m-2">
             <img src="{{ $product->pictureUrl }}" class="card-img-top" />
