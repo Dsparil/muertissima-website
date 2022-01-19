@@ -5,5 +5,7 @@ It can be reusable for other bands.
 
 Interesting features, such as :
 - Facebook posts integration from band page
-- Automatic photo galleries
+  - Automatic news discovery
+  - Automatic shows discovery
+  - Automatic photo galleries
 - Bandcamp products integration
