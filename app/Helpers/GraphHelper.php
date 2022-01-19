@@ -31,8 +31,10 @@ class GraphHelper
 
     public static function getPosts(string $customUrl = null)
     {
-        if (Cache::has('posts')) {
-            return Cache::get('posts');
+        $cacheId = (self::$recursionLimit === null)? 0 : self::$recursionLimit;
+
+        if (Cache::has('posts-'.$cacheId)) {
+            return Cache::get('posts-'.$cacheId);
         }
 
         if (self::$recursionLimit !== null && self::$recursionCount >= self::$recursionLimit) {
@@ -60,7 +62,7 @@ class GraphHelper
             $posts = array_merge($posts, self::getPosts($response->paging->next));
         }
 
-        Cache::put('posts', $posts, self::$cacheTTL);
+        Cache::put('posts-'.$cacheId, $posts, self::$cacheTTL);
 
         return $posts;
     }
