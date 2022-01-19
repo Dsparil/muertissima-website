@@ -17,7 +17,7 @@ class PhotosController extends Controller
             abort(500, 'Erreur dans la récupération des données.');
         }
 
-        return view('shows', [
+        return view('photos', [
             'page'  => 'photos',
             'posts' => FBPost::hydrateFromSource($posts->data, 'isPhoto')
         ]);

@@ -2,7 +2,7 @@
     <div class="carousel-inner">
         @foreach($post->attachments as $idx => $attachment)
         <div class="carousel-item{{ $idx == 0? ' active' : '' }}">
-            <img class="d-block w-100" src="{{ $attachment->pictureUrl }}" alt="">
+            <img class="d-block w-100" src="{{ $attachment->pictureUrl }}" alt="photo_{{ $idx }}">
         </div>
         @endforeach
     </div>
@@ -15,3 +15,4 @@
         <span class="sr-only">Next</span>
     </a>
 </div>
+

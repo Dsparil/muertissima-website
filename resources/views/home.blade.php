@@ -14,6 +14,10 @@ Muertissima
 
 @section('content')
 @foreach($posts as $post)
-    @include('partials.post', ['post' => $post])
+    @include('partials.post', [
+        'post'     => $post,
+        'leftCol'  => 3,
+        'rightCol' => 9
+    ])
 @endforeach
 @endsection

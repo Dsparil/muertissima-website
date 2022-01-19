@@ -7,7 +7,7 @@
 
     <div class="row">
         @if($post->hasDisplayableAttachments())
-        <div class="col-4">
+        <div class="col-{{ $leftCol ?? '4' }}">
             @if(count($post->attachments) > 1)
                 @include('partials.carousel', ['post' => $post, 'id' => uniqid()])
             @else
@@ -16,7 +16,7 @@
         </div>
         @endif
         @if($post->hasMessage())
-        <div class="col-8">
+        <div class="col-{{ $rightCol ?? '8' }}">
             <span>{!! nl2br($post->content) !!}</span>
         </div>
         @endif
