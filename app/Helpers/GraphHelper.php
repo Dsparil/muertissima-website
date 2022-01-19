@@ -3,6 +3,7 @@
 namespace App\Helpers;
 
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Cache;
 
 class GraphHelper
 {
@@ -13,6 +14,8 @@ class GraphHelper
     public static $recursionLimit = null;
 
     private static $apiUrl = 'https://graph.facebook.com/v12.0/';
+
+    private static $cacheTTL = 3600;
 
     private static $recursionCount = 0;
 
@@ -28,6 +31,10 @@ class GraphHelper
 
     public static function getPosts(string $customUrl = null)
     {
+        if (Cache::has('posts')) {
+            return Cache::get('posts');
+        }
+
         if (self::$recursionLimit !== null && self::$recursionCount >= self::$recursionLimit) {
             return [];
         }
@@ -52,6 +59,8 @@ class GraphHelper
         if (isset($response->paging->next)) {
             $posts = array_merge($posts, self::getPosts($response->paging->next));
         }
+
+        Cache::put('posts', $posts, self::$cacheTTL);
 
         return $posts;
     }
