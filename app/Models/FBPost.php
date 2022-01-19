@@ -14,11 +14,11 @@ class FBPost extends AbstractHydratableModel
 
     public $date;
 
-    private $hasMessage = false;
-
     private $hasDisplayableAttachments = false;
 
     private $isEvent = false;
+
+    private $isDisplayableEvent = false;
 
     private static $urlRegexp = "@(https?://([-\w\.]+[-\w])+(:\d+)?(/([\w/_\.#-]*(\?\S+)?[^\.\s])?).*$)@";
 
@@ -41,6 +41,7 @@ class FBPost extends AbstractHydratableModel
     public function isHomePost(): bool
     {
         return  !$this->isEvent() && 
+                !$this->isInterview() &&
                 !$this->isPhoto() && (
                     $this->hasMessage() || 
                     $this->hasDisplayableAttachments()
@@ -56,14 +57,24 @@ class FBPost extends AbstractHydratableModel
         ;
     }
 
+    public function isInterview(): bool
+    {
+        return strpos(strtolower($this->title), 'interview') !== false;
+    }
+
     public function isEvent(): bool
     {
         return $this->isEvent;
     }
 
+    public function isDisplayableEvent(): bool
+    {
+        return $this->isDisplayableEvent;
+    }
+
     public function hasMessage(): bool
     {
-        return $this->hasMessage;
+        return $this->content !== null;
     }
 
     public function hasDisplayableAttachments(): bool
@@ -74,9 +85,7 @@ class FBPost extends AbstractHydratableModel
     private function buildBasicInfo(\StdClass $data)
     {
         if (isset($data->message)) {
-            $this->hasMessage = true;
-            $message = $data->message;
-
+            $message       = $data->message;
             $this->title   = substr($message, 0, strpos($message, "\n"));
             $content       = trim(substr($message, strpos($message, "\n")), "\n");
             $this->content = preg_replace(self::$urlRegexp, ' ', $content);
@@ -103,12 +112,13 @@ class FBPost extends AbstractHydratableModel
                 $this->hasDisplayableAttachments = true;
             }
 
-            if ($attachment->type == 'event' && 
-                $this->hasMessage() && 
-                !$attachment->eventHasBeenDisplayed())
-            {
+            if ($attachment->type == 'event' && $this->hasMessage()) {
+                if (!$attachment->eventHasBeenDisplayed()) {
+                    $this->isDisplayableEvent = true;
+                }
+
                 self::$displayedEvents[] = $attachment->url;
-                $this->isEvent = true;
+                $this->isEvent           = true;
             }
         }
     }

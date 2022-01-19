@@ -7,6 +7,8 @@ try {
     console.error('Could not load Bootstrap JS');
 }
 
+require('mdbootstrap/js/mdb');
+
 /**
  * to our Laravel back-end. This library automatically handles sending the
  * CSRF token as a header based on the value of the "XSRF" token cookie.

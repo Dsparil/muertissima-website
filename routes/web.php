@@ -6,7 +6,9 @@ use App\Http\Controllers\{
     ShowsController, 
     MusicController,
     PhotosController,
-    ShopController
+    ShopController,
+    InterviewController,
+    ContactController
 };
 
 /*
@@ -25,3 +27,6 @@ Route::get('/shows', [ShowsController::class, 'index'])->name('shows');
 Route::get('/photos', [PhotosController::class, 'index'])->name('photos');
 Route::get('/music', [MusicController::class, 'index'])->name('music');
 Route::get('/shop', [ShopController::class, 'index'])->name('shop');
+Route::get('/interviews', [InterviewController::class, 'index'])->name('interviews');
+Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+Route::post('/contact/message', [ContactController::class, 'index'])->name('contact.postMessage');
