@@ -15,7 +15,7 @@
         @endif
         @if($post->hasMessage())
         <div class="col-8">
-            <span>{{ $post->content }}</span>
+            <span>{!! nl2br($post->content) !!}</span>
         </div>
         @endif
     </div>
