@@ -24,6 +24,8 @@ class FBPost extends AbstractHydratableModel
 
     private static $urlRegexp = "@(https?://([-\w\.]+[-\w])+(:\d+)?(/([\w/_\.#-]*(\?\S+)?[^\.\s])?).*$)@";
 
+    public static $displayedEvents = [];
+
     /**
      * @var FBAttachment[]
      */
@@ -32,7 +34,10 @@ class FBPost extends AbstractHydratableModel
     public function __construct(\StdClass $data)
     {
         $this->buildBasicInfo($data);
-        $this->buildAttachments($data->attachments->data);
+
+        if (isset($data->attachments)) {
+            $this->buildAttachments($data->attachments->data);
+        }
     }
 
     public function isHomePost(): bool
@@ -91,14 +96,18 @@ class FBPost extends AbstractHydratableModel
             }
         }
 
-        $this->isPhoto = count($this->attachments) > 1;
+        $this->isPhoto = count($this->attachments) > 3;
 
         foreach ($this->attachments as $attachment) {
             if ($attachment->isDisplayable()) {
                 $this->hasDisplayableAttachments = true;
             }
 
-            if ($attachment->type == 'event') {
+            if ($attachment->type == 'event' && 
+                $this->hasMessage() && 
+                !$attachment->eventHasBeenDisplayed())
+            {
+                self::$displayedEvents[] = $attachment->url;
                 $this->isEvent = true;
             }
         }

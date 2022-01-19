@@ -10,16 +10,16 @@ class HomeController extends Controller
 {
     public function index(Request $request)
     {
-        GraphHelper::initialize();
+        GraphHelper::initialize(2);
         $posts = GraphHelper::getPosts();
 
-        if (isset($posts->error) || !isset($posts->data)) {
+        if ($posts === null) {
             abort(500, 'Erreur dans la récupération des données.');
         }
 
         return view('home', [
             'page'  => 'home',
-            'posts' => FBPost::hydrateFromSource($posts->data, 'isHomePost')
+            'posts' => FBPost::hydrateFromSource($posts, 'isHomePost')
         ]);
     }
 }

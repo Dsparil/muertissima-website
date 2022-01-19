@@ -53,4 +53,9 @@ class FBAttachment extends AbstractHydratableModel
     {
         return $this->pictureUrl !== null && $this->url !== null;
     }
+
+    public function eventHasBeenDisplayed(): bool
+    {
+        return in_array($this->url, FBPost::$displayedEvents);
+    }
 }

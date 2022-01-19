@@ -13,13 +13,13 @@ class ShowsController extends Controller
         GraphHelper::initialize();
         $posts = GraphHelper::getPosts();
 
-        if (isset($posts->error) || !isset($posts->data)) {
+        if ($posts === null) {
             abort(500, 'Erreur dans la récupération des données.');
         }
 
         return view('shows', [
             'page'  => 'shows',
-            'posts' => FBPost::hydrateFromSource($posts->data, 'isEvent')
+            'posts' => FBPost::hydrateFromSource($posts, 'isEvent')
         ]);
     }
 }

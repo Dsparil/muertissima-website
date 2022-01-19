@@ -10,16 +10,30 @@ class GraphHelper
 
     public static $token;
 
+    public static $recursionLimit = null;
+
     private static $apiUrl = 'https://graph.facebook.com/v12.0/';
 
-    public static function initialize()
+    private static $recursionCount = 0;
+
+    public static function initialize(int $recursionLimit = null)
     {
         self::$pageId = env('FB_PAGE_ID');
         self::$token  = env('FB_PAGE_ACCESS_TOKEN');
+
+        if ($recursionLimit !== null) {
+            self::$recursionLimit = $recursionLimit;
+        }
     }
 
-    public static function getPosts()
+    public static function getPosts(string $customUrl = null)
     {
+        if (self::$recursionLimit !== null && self::$recursionCount >= self::$recursionLimit) {
+            return [];
+        }
+
+        self::$recursionCount++;
+
         $fields = self::buildFields([
             'attachments{target,media_type,media,url,subattachments}',
             'message',
@@ -27,9 +41,19 @@ class GraphHelper
         ]);
 
         $url      = self::addToken(self::$apiUrl.'/'.self::$pageId.'/posts?fields='.$fields);
-        $response = Http::get($url);
+        $response = (Http::get($customUrl ?? $url))->object();
 
-        return $response->object();
+        if (isset($response->error) || !isset($response->data)) {
+            return null;
+        }
+
+        $posts = $response->data;
+
+        if (isset($response->paging->next)) {
+            $posts = array_merge($posts, self::getPosts($response->paging->next));
+        }
+
+        return $posts;
     }
 
     private static function buildFields(array $fields): string
