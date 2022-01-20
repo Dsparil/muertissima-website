@@ -8,7 +8,8 @@ use App\Http\Controllers\{
     PhotosController,
     ShopController,
     InterviewController,
-    ContactController
+    ContactController,
+    AdminController
 };
 
 /*
@@ -30,3 +31,4 @@ Route::get('/shop', [ShopController::class, 'index'])->name('shop');
 Route::get('/interviews', [InterviewController::class, 'index'])->name('interviews');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::post('/contact/message', [ContactController::class, 'index'])->name('contact.postMessage');
+Route::get('/rider', [AdminController::class, 'rider'])->name('admin');

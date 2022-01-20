@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Collection;
 
 class FBPost extends AbstractHydratableModel
 {
@@ -50,8 +51,8 @@ class FBPost extends AbstractHydratableModel
 
     public function isPhoto(): bool
     {
-        return  is_array($this->attachments) &&
-                count($this->attachments) > 3 &&
+        return  $this->attachments instanceof Collection &&
+                $this->attachments->count() > 3 &&
                 $this->hasMessage() &&
                 strpos($this->content, 'bandcamp') === false
         ;
@@ -100,13 +101,15 @@ class FBPost extends AbstractHydratableModel
 
         foreach ($data as $subdata) {
             if (isset($subdata->subattachments)) {
-                $this->attachments = array_merge(
-                    $this->attachments,
-                    FBAttachment::hydrateFromSource($subdata->subattachments->data)
-                );
+                $this->attachments = $this->attachments->mergeRecursive(FBAttachment::hydrateFromSource($subdata->subattachments->data));
             }
         }
 
+        $this->calculateFlagsFromAttachments();
+    }
+
+    private function calculateFlagsFromAttachments()
+    {
         foreach ($this->attachments as $attachment) {
             if ($attachment->isDisplayable()) {
                 $this->hasDisplayableAttachments = true;

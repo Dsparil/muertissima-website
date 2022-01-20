@@ -3,12 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 
 abstract class AbstractHydratableModel extends Model
 {
-    public static function hydrateFromSource(array $data, string $callback = null)
+    public static function hydrateFromSource(array $data, string $callback = null): Collection
     {
-        $items     = [];
+        $items     = new Collection();
         $itemClass = get_called_class();
 
         foreach ($data as $item) {
@@ -18,7 +19,7 @@ abstract class AbstractHydratableModel extends Model
                 continue;
             }
 
-            $items[] = $item;
+            $items->push($item);
         }
 
         return $items;
