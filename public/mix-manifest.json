@@ -19,5 +19,6 @@
     "/js/tinymce/README.md": "/js/tinymce/README.md",
     "/js/tinymce/tinymce.d.ts": "/js/tinymce/tinymce.d.ts",
     "/js/tinymce/tinymce.js": "/js/tinymce/tinymce.js",
-    "/js/tinymce/tinymce.min.js": "/js/tinymce/tinymce.min.js"
+    "/js/tinymce/tinymce.min.js": "/js/tinymce/tinymce.min.js",
+    "/js/admin/crudobject.js": "/js/admin/crudobject.js"
 }

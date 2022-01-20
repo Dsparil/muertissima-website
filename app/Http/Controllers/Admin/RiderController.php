@@ -4,20 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{Datasheet, BandMember};
+use App\Models\{Datasheet, BandMember, StuffSection, Stuff};
 use PDF;
 
 class RiderController extends Controller
 {
     public function edit(Request $request)
     {
-        $datasheet   = Datasheet::first();
-        $bandMembers = BandMember::all();
-
-        return view('admin.rider', [
-            'datasheet'   => $datasheet,
-            'bandMembers' => $bandMembers
-        ]);
+        return view('admin.rider', $this->getViewData());
     }
 
     public function save(Request $request)
@@ -39,11 +33,18 @@ class RiderController extends Controller
         $datasheet   = Datasheet::first();
         $bandMembers = BandMember::all();
 
-        $pdf = PDF::loadView('admin.rider-pdf', [
-            'datasheet'   => $datasheet,
-            'bandMembers' => $bandMembers
-        ]);
+        $pdf = PDF::loadView('admin.rider-pdf', $this->getViewData());
 
         return $pdf->download('Fiche technique.pdf');
+    }
+
+    private function getViewData(): array
+    {
+        return [
+            'datasheet'     => Datasheet::first(),
+            'bandMembers'   => BandMember::all(),
+            'stuffSections' => StuffSection::all(),
+            'stuff'         => Stuff::all()
+        ];
     }
 }

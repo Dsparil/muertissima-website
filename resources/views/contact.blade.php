@@ -38,7 +38,7 @@ Muertissima - Shows
         <form method="POST" action="{{ route('contact.postMessage') }}">
             <div class="form-group">
                 <label for="contactMessage">Écrivez-nous un p'tit mot !</label>
-                <textarea class="form-control" id="contactMessage" rows="3"></textarea>
+                <textarea class="form-control bg-dark text-light" id="contactMessage" rows="3"></textarea>
             </div>
             <div class="g-recaptcha" data-sitekey="{{ env('RECAPTCHA_SITEKEY') }}"></div>
             <br/>

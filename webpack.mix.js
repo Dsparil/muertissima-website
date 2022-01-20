@@ -15,4 +15,5 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
     .copy('resources/images/*', 'public/images')
     .copyDirectory('node_modules/tinymce', 'public/js/tinymce')
+    .copyDirectory('resources/js/admin', 'public/js/admin')
     .sourceMaps();
