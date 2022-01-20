@@ -3,6 +3,9 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="author" content="Simon PERRIN (https://github.com/Dsparil)" />
+        <meta name="copyright" content="Simon PERRIN"/>
+        <meta name="robots" content="follow"/>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
         <link href="{{ asset('css/app.css') }}" rel="stylesheet" />
