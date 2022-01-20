@@ -7,10 +7,10 @@
                     <div class="card-body">
                         <h5 class="card-title">Nouveau</h5>
                         <div class="form-group">
-                            <label>Nom : <input type="text" data-name="member_name" class="form-control" /></label>
-                            <label>Instruments : <input type="text" data-name="member_instruments" class="form-control" /></label>
+                            <label>Nom : <input type="text" data-name="members_name" class="form-control" /></label>
+                            <label>Instruments : <input type="text" data-name="members_instruments" class="form-control" /></label>
                         </div>
-                        <a href="#" class="btn btn-primary" id="newBandMate">Ajouter</a>
+                        <a href="#" class="btn btn-primary newItem">Ajouter</a>
                     </div>
                 </div>
             </div>
@@ -23,32 +23,19 @@
         var $bandMembers = $.extend($('[data-band-members]'), crudObject, {
             attributeName: 'data-band-members',
             objectName:    'members',
+            fieldList:     [
+                'name',
+                'instruments'
+            ],
 
             getCardContent: function(item) {
                 return  '<h5 class="card-title">' +
-                            '<input type="text" name="' + this.getInputStartingName() + '[name]" class="form-control" value="' + item.name + '" />' +
+                            '<input type="text" name="' + this.getInputName(item, 'name') + '" class="form-control" value="' + item.name + '" />' +
                         '</h5>' +
                         '<p class="card-text">' +
-                            '<input type="text" name="' + this.getInputStartingName() + '[instruments]" class="form-control" value="' + item.instruments + '" />' +
+                            '<input type="text" name="' + this.getInputName(item, 'instruments') + '" class="form-control" value="' + item.instruments + '" />' +
                         '</p>';
-            },
-
-            bindCustomEvents: function() {
-                $('#newBandMate').click(function() {
-                    let $newName        = $('input[data-name="member_name"]');
-                    let $newInstruments = $('input[data-name="member_instruments"]');
-
-                    this.newItem({
-                        name:        $newName.val(),
-                        instruments: $newInstruments.val()
-                    });
-
-                    $newName.val('');
-                    $newInstruments.val('');
-                }.bind(this));
             }
-        });
-
-        $bandMembers.bindEvents();
+        }).bindEvents();
     });
 </script>

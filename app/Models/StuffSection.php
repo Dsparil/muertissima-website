@@ -3,9 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
-class StuffSection extends Model
+class StuffSection extends AbstractModelSaveProcess
 {
     use HasFactory;
 
@@ -13,4 +12,9 @@ class StuffSection extends Model
     public const UPDATED_AT = null;
 
     protected $table = 'stuff_sections';
+
+    public function fillFromForm(array $data)
+    {
+        $this->name = $data['name'];
+    }
 }

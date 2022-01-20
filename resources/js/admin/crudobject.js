@@ -1,7 +1,8 @@
 var crudObject = {
     attributeName: null,
-    objectName: null,
-    colClass: 'col-3',
+    objectName:    null,
+    colClass:      'col-3',
+    fieldList:     [],
 
     getItems: function() {
         return JSON.parse(this.attr(this.attributeName));
@@ -12,6 +13,7 @@ var crudObject = {
     },
 
     deleteItemById: function(id) {
+        console.log('DELETE', id);
         var items = this.getItems();
 
         for (idx in items) {
@@ -53,6 +55,14 @@ var crudObject = {
             var id      = $target.closest('div').find('input[name$="[id]"]').val();
 
             this.deleteItemById(id);
+        }.bind(this)).on ('click', 'a.newItem', function(event) {
+            var newItem = {};
+            for (var idx in this.fieldList) {
+                var field = this.fieldList[idx];
+                newItem[field] = this.getNewItemInput(field).val();
+                this.getNewItemInput(field).val('');
+            }
+            this.newItem(newItem);
         }.bind(this));
 
         if (this.bindCustomEvents) {
@@ -62,16 +72,20 @@ var crudObject = {
         this.buildCards();
     },
 
-    getInputForId: function(id) {
-        return '<input type="hidden" name="'+ this.getInputStartingName() + '[id]" value="' + id + '" />';
+    getInputForId: function(item) {
+        return '<input type="hidden" name="'+ this.getInputName(item, 'id') + '" value="' + item.id + '" />';
+    },
+
+    getNewItemInput: function(field) {
+        return $('input[data-name="' + this.objectName + '_' + field + '"]');
     },
 
     getDeleteButton: function() {
         return '<a href="#" class="btn btn-danger deleteItem">Supprimer</a>';
     },
 
-    getInputStartingName: function(id) {
-        return this.objectName + '[' + id + ']';
+    getInputName: function(item, name) {
+        return this.objectName + '[' + item.id + '][' + name + ']';
     },
 
     getCard: function(item) {
@@ -80,7 +94,7 @@ var crudObject = {
                 '<div class="card bg-dark m-2">' +
                     '<div class="card-body">' +
                         '<div class="form-group">' +
-                            this.getInputForId(item.id) +
+                            this.getInputForId(item) +
                             this.getCardContent(item) +
                             this.getDeleteButton() +
                         '</div>' +

@@ -12,13 +12,14 @@
                     <div class="card-body">
                         <h5 class="card-title">Nouvelle</h5>
                         <div class="form-group">
-                            <label>Nom : <input type="text" data-name="section_name" class="form-control" /></label>
+                            <label>Nom : <input type="text" data-name="sections_name" class="form-control" /></label>
                         </div>
-                        <a href="#" class="btn btn-primary" id="newStuffSection">Ajouter</a>
+                        <a href="#" class="btn btn-primary newItem">Ajouter</a>
                     </div>
                 </div>
             </div>
         </div>
+        <hr />
         <h4>Matériels</h4>
         <div class="row" data-stuff="{{ $stuff->toJson() }}">
             <div class="col-3">
@@ -28,7 +29,7 @@
                         <div class="form-group">
                             <label>Nom : <input type="text" data-name="stuff_name" class="form-control" /></label>
                         </div>
-                        <a href="#" class="btn btn-primary" id="newStuff">Ajouter</a>
+                        <a href="#" class="btn btn-primary newItem">Ajouter</a>
                     </div>
                 </div>
             </div>
@@ -41,49 +42,27 @@
         var $stuffSections = $.extend(true, $('[data-stuff-sections]'), crudObject, {
             attributeName: 'data-stuff-sections',
             objectName:    'sections',
+            fieldList:     ['name'],
 
             getCardContent: function(item) {
                 return  '<h5 class="card-title">' +
-                            '<input type="text" name="' + this.getInputStartingName() + '[name]" class="form-control" value="' + item.name + '" />' +
+                            '<input type="text" name="' + this.getInputName(item, 'name') + '" class="form-control" value="' + item.name + '" />' +
                         '</h5>';
-            },
-
-            bindCustomEvents: function() {
-                $('#newStuffSection').click(function() {
-                    let $newName = $('input[data-name="section_name"]');
-
-                    this.newItem({
-                        name: $newName.val()
-                    });
-
-                    $newName.val('');
-                }.bind(this));
             }
-        });
+        }).bindEvents();
 
-        $stuffSections.bindEvents();
-
-        var $stuff = $.extend(true, $('[data-stuff-sections]'), crudObject, {
+        var $stuff = $.extend(true, $('[data-stuff]'), crudObject, {
             attributeName: 'data-stuff',
             objectName:    'stuff',
+            fieldList:     [
+                'name'
+            ],
 
             getCardContent: function(item) {
                 return  '<h5 class="card-title">' +
-                            '<input type="text" name="' + this.getInputStartingName() + '[name]" class="form-control" value="' + item.name + '" />' +
+                            '<input type="text" name="' + this.getInputName(item, 'name') + '" class="form-control" value="' + item.name + '" />' +
                         '</h5>';
-            },
-
-            bindCustomEvents: function() {
-                $('#newStuff').click(function() {
-                    let $newName = $('input[data-name="stuff_name"]');
-
-                    this.newItem({
-                        name: $newName.val()
-                    });
-
-                    $newName.val('');
-                }.bind(this));
             }
-        });
+        }).bindEvents();
     });
 </script>
