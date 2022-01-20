@@ -35,7 +35,7 @@ class FBPost extends AbstractHydratableModel
         $this->buildBasicInfo($data);
 
         if (isset($data->attachments)) {
-            $this->buildAttachments($data->attachments->data);
+            $this->buildAttachments(collect($data->attachments->data));
         }
     }
 
@@ -95,13 +95,13 @@ class FBPost extends AbstractHydratableModel
         $this->date = date('d/m/Y H:i:s', strtotime($data->created_time));
     }
 
-    private function buildAttachments(array $data)
+    private function buildAttachments(Collection $data)
     {
         $this->attachments = FBAttachment::hydrateFromSource($data);
 
         foreach ($data as $subdata) {
             if (isset($subdata->subattachments)) {
-                $this->attachments = $this->attachments->mergeRecursive(FBAttachment::hydrateFromSource($subdata->subattachments->data));
+                $this->attachments = $this->attachments->merge(FBAttachment::hydrateFromSource(collect($subdata->subattachments->data)));
             }
         }
 

@@ -39,21 +39,29 @@ div.post {
     background-position: 0 60%;
 }
 
-.nav-item {
-    font-weight: bold;
-    font-size: 1.2rem;
-    background-color: rgba(0, 0, 0, 0.8);
-    border-radius: 20px;
-    margin-right: 1em;
+div#navissima {
+    ul {
+        li.nav-item {
+            font-weight: bold;
+            font-size: 1.2rem;
+            background-color: rgba(0, 0, 0, 0.8) !important;
+            border-radius: 20px;
+            margin-right: 1em;
 
-    .active {
-        color: #f1c232 !important;
+            .active {
+                color: #f1c232 !important;
+            }
+
+            a.nav-link:hover {
+                color: rgba(241, 194, 50, 0.75) !important;
+            }
+        }
     }
 }
 
-.nav-link:hover {
-    color: rgba(241, 194, 50, 0.75) !important;
-}
+
+
+
 
 a {
     color: #bb5f62;

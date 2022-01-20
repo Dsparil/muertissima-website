@@ -7,7 +7,7 @@ use Illuminate\Support\Collection;
 
 abstract class AbstractHydratableModel extends Model
 {
-    public static function hydrateFromSource(array $data, string $callback = null): Collection
+    public static function hydrateFromSource(Collection $data, string $callback = null): Collection
     {
         $items     = new Collection();
         $itemClass = get_called_class();

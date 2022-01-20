@@ -4,6 +4,7 @@ namespace App\Helpers;
 
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Collection;
 
 class GraphHelper
 {
@@ -15,33 +16,25 @@ class GraphHelper
 
     private static $apiUrl = 'https://graph.facebook.com/v12.0/';
 
-    private static $cacheTTL = 3600;
+    private static $cacheTTL = 2 * 3600;
 
-    private static $recursionCount = 0;
+    private static $limit = 0;
 
-    public static function initialize(int $recursionLimit = null)
+    public static function initialize(int $limit = null)
     {
         self::$pageId = env('FB_PAGE_ID');
         self::$token  = env('FB_PAGE_ACCESS_TOKEN');
 
-        if ($recursionLimit !== null) {
-            self::$recursionLimit = $recursionLimit;
+        if ($limit !== null) {
+            self::$limit = $limit;
         }
     }
 
-    public static function getPosts(string $customUrl = null)
+    public static function getPosts(string $customUrl = null): ?Collection
     {
-        $cacheId = (self::$recursionLimit === null)? 0 : self::$recursionLimit;
-
-        if (Cache::has('posts-'.$cacheId)) {
-            return Cache::get('posts-'.$cacheId);
+        if (Cache::has('posts')) {
+            return Cache::get('posts');
         }
-
-        if (self::$recursionLimit !== null && self::$recursionCount >= self::$recursionLimit) {
-            return [];
-        }
-
-        self::$recursionCount++;
 
         $fields = self::buildFields([
             'attachments{target,media_type,media,url,subattachments}',
@@ -56,13 +49,13 @@ class GraphHelper
             return null;
         }
 
-        $posts = $response->data;
+        $posts = collect($response->data);
 
         if (isset($response->paging->next)) {
-            $posts = array_merge($posts, self::getPosts($response->paging->next));
+            $posts = $posts->merge(self::getPosts($response->paging->next));
         }
 
-        Cache::put('posts-'.$cacheId, $posts, self::$cacheTTL);
+        Cache::put('posts', $posts, self::$cacheTTL);
 
         return $posts;
     }

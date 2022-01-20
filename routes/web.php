@@ -9,7 +9,7 @@ use App\Http\Controllers\{
     ShopController,
     InterviewController,
     ContactController,
-    AdminController
+    Admin\RiderController as RiderController
 };
 
 /*
@@ -30,5 +30,13 @@ Route::get('/music', [MusicController::class, 'index'])->name('music');
 Route::get('/shop', [ShopController::class, 'index'])->name('shop');
 Route::get('/interviews', [InterviewController::class, 'index'])->name('interviews');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+
 Route::post('/contact/message', [ContactController::class, 'index'])->name('contact.postMessage');
-Route::get('/rider', [AdminController::class, 'rider'])->name('admin');
+
+Route::prefix('/admin')->name('admin.')->group(function () {
+    Route::prefix('/rider')->name('rider.')->group(function () {
+        Route::get('/', [RiderController::class, 'edit'])->name('edit');
+        Route::post('/save', [RiderController::class, 'save'])->name('save');
+        Route::get('/generate', [RiderController::class, 'generatePDF'])->name('generate');
+    });
+});
