@@ -40,3 +40,8 @@ Route::prefix('/admin')->name('admin.')->group(function () {
         Route::get('/generate', [RiderController::class, 'generatePDF'])->name('generate');
     });
 });
+
+Route::get('/.well-known/pki-validation/3D5143A88C50F120AB04B8B94D57BACD.txt', function() {
+     return response(file_get_contents('../3D5143A88C50F120AB04B8B94D57BACD.txt'), 200)
+        ->header('Content-Type', 'text/plain');
+});
