@@ -13,7 +13,6 @@ var crudObject = {
     },
 
     deleteItemById: function(id) {
-        console.log('DELETE', id);
         var items = this.getItems();
 
         for (idx in items) {

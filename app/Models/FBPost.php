@@ -41,10 +41,11 @@ class FBPost extends AbstractHydratableModel
 
     public function isHomePost(): bool
     {
-        return  !$this->isEvent() && 
+        return  !$this->isEvent() &&
+                !$this->isLineup() &&
                 !$this->isInterview() &&
                 !$this->isPhoto() && (
-                    $this->hasMessage() || 
+                    $this->hasMessage() ||
                     $this->hasDisplayableAttachments()
                 );
     }
@@ -71,6 +72,11 @@ class FBPost extends AbstractHydratableModel
     public function isDisplayableEvent(): bool
     {
         return $this->isDisplayableEvent;
+    }
+
+    public function isLineup(): bool
+    {
+        return strpos($this->content, '#LineUp') !== false;
     }
 
     public function hasMessage(): bool

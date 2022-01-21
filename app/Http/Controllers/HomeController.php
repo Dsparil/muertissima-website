@@ -22,4 +22,19 @@ class HomeController extends Controller
             'posts' => FBPost::hydrateFromSource($posts, 'isHomePost')
         ]);
     }
+
+    public function about(Request $request)
+    {
+        GraphHelper::initialize();
+        $posts = GraphHelper::getPosts();
+
+        if ($posts === null) {
+            abort(500, 'Erreur dans la récupération des données.');
+        }
+
+        return view('about', [
+            'page'  => 'about',
+            'posts' => FBPost::hydrateFromSource($posts, 'isLineup')->reverse()
+        ]);
+    }
 }

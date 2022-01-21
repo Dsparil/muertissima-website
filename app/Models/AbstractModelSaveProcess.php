@@ -26,7 +26,7 @@ class AbstractModelSaveProcess extends Model
                 })->first();
 
                 if ($DBitem === null) {
-                    throw new \Exception('Band Member "'.$id.'"" not found.');
+                    throw new \Exception('Item "'.$id.'" of class "'.$modelClass.'" not found.');
                 }
             }
 

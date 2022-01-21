@@ -1,4 +1,4 @@
-<div class="post">
+<div class="post{{ isset($noSeparator)? '_noseparator' : '' }}">
     <div class="row">
         <div class="col">
             <h2>{{ $post->title }}</h2>
@@ -22,7 +22,9 @@
         @endif
     </div>
 
+    @if(!isset($noDate))
     <div class="row">
         <div class="col"><p class="date">{{ $post->date }}</p></div>
     </div>
+    @endif
 </div>
