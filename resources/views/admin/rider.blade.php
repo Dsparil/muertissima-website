@@ -5,7 +5,7 @@ Gestion de la fiche technique
 @endsection
 
 @section('content')
-<form method="POST" action="{{ route('admin.rider.save') }}">
+<form id="riderForm" method="POST" action="{{ route('admin.rider.save') }}">
     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">

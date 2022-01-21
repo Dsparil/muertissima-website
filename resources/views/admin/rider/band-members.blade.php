@@ -20,7 +20,7 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-        var $bandMembers = $.extend($('[data-band-members]'), crudObject, {
+        document.$bandMembers = $.extend($('[data-band-members]'), crudObject, {
             attributeName: 'data-band-members',
             objectName:    'members',
             colClass:      'col-lg-3',

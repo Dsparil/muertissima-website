@@ -1,8 +1,8 @@
 var crudObject = {
-    attributeName: null,
-    objectName:    null,
-    colClass:      'col-3',
-    fieldList:     [],
+    attributeName:  null,
+    objectName:     null,
+    colClass:       'col-3',
+    fieldList:      [],
 
     getItems: function() {
         return JSON.parse(this.attr(this.attributeName));
@@ -22,6 +22,7 @@ var crudObject = {
         }
 
         this.setItems(items);
+        this.trigger('modified');
         this.buildCards();
     },
 
@@ -32,6 +33,7 @@ var crudObject = {
         items.push(item);
 
         this.setItems(items);
+        this.trigger('modified');
         this.buildCards();
     },
 
@@ -46,6 +48,25 @@ var crudObject = {
         }
 
         return newCounter;
+    },
+
+    getSelectBox: function(field, item, selectedId, forceObjectName) {
+        var items   = this.getItems();
+        var options = '<option value="">--</option>';
+
+        for (var idx in items) {
+            options +=  '<option value="' + items[idx].id + '"' + 
+                        ((selectedId == items[idx].id)? ' selected="selected"' : '') + 
+                        '>' + items[idx].name + '</option>';
+        }
+
+        if (field.substr(0, 4) == 'new-') {
+            var nameAttribute = 'data-name="' + ((forceObjectName)? forceObjectName : this.objectName) + '_' + field.substr(4) + '"';
+        } else {
+            var nameAttribute = 'name="' + this.getInputName(item, field, forceObjectName) + '"';
+        }
+
+        return '<select ' + nameAttribute + ' class="form-control '+ this.objectName + '">' + options + '</select>';
     },
 
     bindEvents: function() {
@@ -68,7 +89,17 @@ var crudObject = {
             this.bindCustomEvents();
         }
 
+        $('span.' + this.objectName + '_selectbox').each(function(idx, item) {
+            var $item      = $(item);
+            var field      = $item.attr('data-field');
+            var objectName = $item.attr('data-object-name');
+
+            $item.replaceWith(this.getSelectBox(field, undefined, undefined, objectName));
+        }.bind(this));
+
         this.buildCards();
+
+        return this;
     },
 
     getInputForId: function(item) {
@@ -76,15 +107,15 @@ var crudObject = {
     },
 
     getNewItemInput: function(field) {
-        return $('input[data-name="' + this.objectName + '_' + field + '"]');
+        return $('[data-name="' + this.objectName + '_' + field + '"]');
     },
 
     getDeleteButton: function() {
         return '<a href="#" class="btn btn-danger deleteItem">Supprimer</a>';
     },
 
-    getInputName: function(item, name) {
-        return this.objectName + '[' + item.id + '][' + name + ']';
+    getInputName: function(item, name, forceObjectName) {
+        return ((forceObjectName)? forceObjectName : this.objectName) + '[' + item.id + '][' + name + ']';
     },
 
     getCard: function(item) {

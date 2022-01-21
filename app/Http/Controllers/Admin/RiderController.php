@@ -25,6 +25,7 @@ class RiderController extends Controller
 
         BandMember::saveProcess($request->post('members'));
         StuffSection::saveProcess($request->post('sections'));
+        Stuff::saveProcess($request->post('stuff'));
 
         return redirect(route('admin.rider.edit'));
     }
