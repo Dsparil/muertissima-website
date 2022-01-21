@@ -2,7 +2,7 @@
     <div class="col">
         <h3>Membres du groupe</h3>
         <div class="row" data-band-members="{{ $bandMembers->toJson() }}">
-            <div class="col-3">
+            <div class="col-lg-3">
                 <div class="card bg-dark m-2">
                     <div class="card-body">
                         <h5 class="card-title">Nouveau</h5>
@@ -23,6 +23,7 @@
         var $bandMembers = $.extend($('[data-band-members]'), crudObject, {
             attributeName: 'data-band-members',
             objectName:    'members',
+            colClass:      'col-lg-3',
             fieldList:     [
                 'name',
                 'instruments'

@@ -7,7 +7,7 @@
     <div class="col">
         <h4>Sections</h4>
         <div class="row" data-stuff-sections="{{ $stuffSections->toJson() }}">
-            <div class="col-3">
+            <div class="col-lg-3">
                 <div class="card bg-dark m-2">
                     <div class="card-body">
                         <h5 class="card-title">Nouvelle</h5>
@@ -22,7 +22,7 @@
         <hr />
         <h4>Matériels</h4>
         <div class="row" data-stuff="{{ $stuff->toJson() }}">
-            <div class="col-3">
+            <div class="col-lg-3">
                 <div class="card bg-dark m-2">
                     <div class="card-body">
                         <h5 class="card-title">Nouveau</h5>
@@ -42,6 +42,7 @@
         var $stuffSections = $.extend(true, $('[data-stuff-sections]'), crudObject, {
             attributeName: 'data-stuff-sections',
             objectName:    'sections',
+            colClass:      'col-lg-3',
             fieldList:     ['name'],
 
             getCardContent: function(item) {
@@ -54,6 +55,7 @@
         var $stuff = $.extend(true, $('[data-stuff]'), crudObject, {
             attributeName: 'data-stuff',
             objectName:    'stuff',
+            colClass:      'col-lg-3',
             fieldList:     [
                 'name'
             ],

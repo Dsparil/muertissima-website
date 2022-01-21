@@ -1,23 +1,23 @@
 <div class="row">
-    <div class="col-6">
+    <div class="col-md-6">
         <h3>Informations générales</h3>
         <div class="form-group">
             <textarea name="general_infos" id="input_general_info">{{ $datasheet->general_info ?? '' }}</textarea>
         </div>
     </div>
-    <div class="col-6">
+    <div class="col-md-6">
         <h3>Réseaux</h3>
         <div class="form-group">
             <textarea name="networks" id="input_networks">{{ $datasheet->networks ?? '' }}</textarea>
         </div>
     </div>
-    <div class="col-6">
+    <div class="col-md-6">
         <h3>Staff</h3>
         <div class="form-group">
             <textarea name="staff" id="input_staff">{{ $datasheet->staff ?? '' }}</textarea>
         </div>
     </div>
-    <div class="col-6">
+    <div class="col-md-6">
         <h3>Langues parlées</h3>
         <div class="form-group">
             <textarea name="languages" id="input_language">{{ $datasheet->languages ?? '' }}</textarea>
