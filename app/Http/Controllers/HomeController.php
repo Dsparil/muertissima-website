@@ -10,7 +10,7 @@ class HomeController extends Controller
 {
     public function index(Request $request)
     {
-        GraphHelper::initialize(2);
+        GraphHelper::initialize();
         $posts = GraphHelper::getPosts();
 
         if ($posts === null) {
@@ -19,7 +19,7 @@ class HomeController extends Controller
 
         return view('home', [
             'page'  => 'home',
-            'posts' => FBPost::hydrateFromSource($posts, 'isHomePost')
+            'posts' => FBPost::hydrateFromSource($posts, 'isHomePost')->slice(0, 30)
         ]);
     }
 

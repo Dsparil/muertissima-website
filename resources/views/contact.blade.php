@@ -13,7 +13,11 @@ Muertissima - Shows
 @endsection
 
 @section('content')
-<h1>Contact</h1>
+<div class="row mt-2">
+    <div class="col">
+        <h1>Contact</h1>
+    </div>
+</div>
 <div class="row">
     <div class="col text-center">
         <a class="btn btn-lg btn-floating" style="background-color: #3b5998;" href="https://www.facebook.com/Muertissima.officiel/" role="button">
@@ -33,7 +37,7 @@ Muertissima - Shows
 </div>
 <div class="row">
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    <div class="col">
+    <div class="col-6">
         <hr />
         <form method="POST" action="{{ route('contact.postMessage') }}">
             <div class="form-group">

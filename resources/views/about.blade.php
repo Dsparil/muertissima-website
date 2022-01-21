@@ -15,13 +15,14 @@ Muertissima - About us
 @section('content')
 <div class="row">
     @foreach($posts as $post)
-    <div class="col-3 p-4">
+    <div class="col-lg-3 col-md-6 col-sm-12 p-4">
         @include('partials.post', [
             'post'        => $post,
             'leftCol'     => '-12 p-2',
-            'rightCol'    => '-12 p-2',
+            'rightCol'    => '-12 p-2 text-justify',
             'noSeparator' => true,
-            'noDate'      => true
+            'noDate'      => true,
+            'centerTitle' => true
         ])
     </div>
     @endforeach

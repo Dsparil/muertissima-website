@@ -1,7 +1,7 @@
 <div class="post{{ isset($noSeparator)? '_noseparator' : '' }}">
     <div class="row">
         <div class="col">
-            <h2>{{ $post->title }}</h2>
+            <h2 class="{{ isset($centerTitle)? 'text-center' : '' }}">{{ $post->title }}</h2>
         </div>
     </div>
 
@@ -16,7 +16,7 @@
         </div>
         @endif
         @if($post->hasMessage())
-        <div class="col-{{ $rightCol ?? '8' }}">
+        <div class="col-{{ $rightCol ?? 'sm-8' }}">
             <span>{!! nl2br($post->content) !!}</span>
         </div>
         @endif

@@ -13,7 +13,11 @@ Muertissima - Merch
 @endsection
 
 @section('content')
-<h1>Merch</h1>
+<div class="row mt-2">
+    <div class="col">
+        <h1>Merch</h1>
+    </div>
+</div>
 <div class="row">
     @foreach($products as $product)
     <div class="col-sm-6 col-md-4 col-lg-3">

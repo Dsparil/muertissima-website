@@ -28,7 +28,7 @@
                 <a class="nav-link{{ $page == 'contact'? ' active' : '' }}" href="{{ route('contact') }}">💀 Contact</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link{{ $page == 'contact'? ' about' : '' }}" href="{{ route('about') }}">💀 About us</a>
+                <a class="nav-link{{ $page == 'about'? ' active' : '' }}" href="{{ route('about') }}">💀 About us</a>
             </li>
         </ul>
     </div>

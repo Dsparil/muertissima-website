@@ -17,7 +17,7 @@ Muertissima
     @include('partials.post', [
         'post'     => $post,
         'leftCol'  => 'sm-3',
-        'rightCol' => 9
+        'rightCol' => 'sm-9'
     ])
 @endforeach
 @endsection

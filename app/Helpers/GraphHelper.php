@@ -18,16 +18,10 @@ class GraphHelper
 
     private static $cacheTTL = 2 * 3600;
 
-    private static $limit = 0;
-
-    public static function initialize(int $limit = null)
+    public static function initialize()
     {
         self::$pageId = env('FB_PAGE_ID');
         self::$token  = env('FB_PAGE_ACCESS_TOKEN');
-
-        if ($limit !== null) {
-            self::$limit = $limit;
-        }
     }
 
     public static function getPosts(string $customUrl = null): ?Collection
