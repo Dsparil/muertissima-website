@@ -22,17 +22,18 @@
         <hr />
         <h4>Matériels</h4>
         <div class="row" data-stuff="{{ $stuff->toJson() }}">
-            <div class="col-lg-4">
+            <div class="col-lg-6">
                 <div class="card bg-dark m-2">
                     <div class="card-body">
+                        <a name="sections_newItem"></a>
                         <h5 class="card-title">Nouveau</h5>
                         <div class="form-group">
                             <label>Section : <span class="sections_selectbox" data-field="new-section_id" data-object-name="stuff"></span></label>
                             <label>Membre : <span class="members_selectbox" data-field="new-band_member_id" data-object-name="stuff"></span></label>
                             <label>Nom complet : <input type="text" data-name="stuff_instrument_name" class="form-control" /></label>
-                            <label>Description : <input type="text" data-name="stuff_content" class="form-control" /></label>
+                            <label>Description : <textarea data-name="stuff_content" class="form-control"></textarea></label>
                         </div>
-                        <a href="#" class="btn btn-primary newItem">Ajouter</a>
+                        <a href="#sections_newItem" class="btn btn-primary newItem">Ajouter</a>
                     </div>
                 </div>
             </div>
@@ -66,7 +67,7 @@
         document.$stuff = $.extend(true, $('[data-stuff]'), crudObject, {
             attributeName: 'data-stuff',
             objectName:    'stuff',
-            colClass:      'col-lg-4',
+            colClass:      'col-lg-6',
             fieldList:     [
                 'section_id',
                 'band_member_id',
@@ -85,8 +86,28 @@
                             '<label>Nom complet : <input type="text" name="' + this.getInputName(item, 'instrument_name') + '" class="form-control" value="' + (item.instrument_name ?? '') + '" /></label>' +
                         '</p>' +
                         '<p class="card-text">' +
-                            '<label>Description : <input type="text" name="' + this.getInputName(item, 'content') + '" class="form-control" value="' + item.content + '" /></label>' +
+                            '<label>Description : <textarea name="' + this.getInputName(item, 'content') + '" class="form-control">' + item.content + '</textarea></label>' +
                         '</p>';
+            },
+
+            buildCardsCallback: function() {
+                this.find('textarea').each(function(idx, item) {
+                    tinymce.init({
+                        target:      item,
+                        menubar:     false,
+                        toolbar:     'styleselect bold italic forecolor backcolor bullist numlist outdent indent',
+                        plugins:     'textcolor, lists,advlist',
+                        width:       '100%',
+                        skin:        'oxide-dark',
+                        content_css: 'dark',
+                        statusbar:   false,
+                        setup:       function (editor) {
+                            editor.on('change', function () {
+                                editor.save();
+                            });
+                        }
+                    });
+                });
             }
         }).bindEvents();
     });

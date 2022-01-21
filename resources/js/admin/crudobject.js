@@ -1,8 +1,9 @@
 var crudObject = {
-    attributeName:  null,
-    objectName:     null,
-    colClass:       'col-3',
-    fieldList:      [],
+    attributeName:      null,
+    objectName:         null,
+    colClass:           'col-3',
+    fieldList:          [],
+    buildCardsCallback: null,
 
     getItems: function() {
         return JSON.parse(this.attr(this.attributeName));
@@ -120,7 +121,7 @@ var crudObject = {
 
     getCard: function(item) {
         return $(
-            '<div class="' + this.colClass + '">' +
+            '<div class="' + this.colClass + '" data-item-id="' + item.id + '">' +
                 '<div class="card bg-dark m-2">' +
                     '<div class="card-body">' +
                         '<div class="form-group">' +
@@ -137,12 +138,36 @@ var crudObject = {
     getCardContent: function(id) {},
 
     buildCards: function() {
-        this.find('div.' + this.colClass + ':not(:last-child)').remove();
+        // this.find('div.' + this.colClass + ':not(:last-child)').remove();
+        var colSelector = 'div.' + this.colClass;
+        
+        this.find(colSelector + ':not(:last-child)').each(function(idx, item) {
+            var $item = $(item);
+            var items = this.getItems();
+            var found = false;
+
+            for (idx in items) {
+                if (items[idx].id == $item.attr('data-item-id')) {
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found) {
+                $item.remove();
+            }
+        }.bind(this));
 
         var items = this.getItems();
 
         for (idx in items) {
-            this.find('div.' + this.colClass + ':last-child').before(this.getCard(items[idx]));
+            if (this.find('[data-item-id=' + items[idx].id + ']').length == 0) {
+                this.find(colSelector + ':last-child').before(this.getCard(items[idx]));
+            }
+        }
+
+        if (this.buildCardsCallback) {
+            this.buildCardsCallback();
         }
     }
 };
