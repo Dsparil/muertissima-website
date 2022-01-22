@@ -24,6 +24,18 @@ class GraphHelper
         self::$token  = env('FB_PAGE_ACCESS_TOKEN');
     }
 
+    public static function getAboutInfo(): string
+    {
+        if (!Cache::has('about')) {
+            $url      = self::addToken(self::$apiUrl.'/'.self::$pageId.'/?fields=description_html');
+            $response = (Http::get($url))->object();
+
+            Cache::put('about', $response->description_html ?? '', self::$cacheTTL);
+        }
+
+        return Cache::get('about');
+    }
+
     public static function getPosts(string $customUrl = null): ?Collection
     {
         if (Cache::has('posts')) {

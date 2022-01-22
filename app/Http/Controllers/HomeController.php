@@ -9,6 +9,11 @@ use Illuminate\Support\Collection;
 
 class HomeController extends Controller
 {
+    public function __construct()
+    {
+        GraphHelper::initialize();
+    }
+
     public function index(Request $request)
     {
         return view('home', [
@@ -21,7 +26,8 @@ class HomeController extends Controller
     {
         return view('about', [
             'page'  => 'about',
-            'posts' => FBPost::hydrateFromSource($this->getPosts(), 'isLineup')->reverse()
+            'posts' => FBPost::hydrateFromSource($this->getPosts(), 'isLineup')->reverse(),
+            'about' => GraphHelper::getAboutInfo()
         ]);
     }
 
@@ -56,7 +62,6 @@ class HomeController extends Controller
 
     private function getPosts(): Collection
     {
-        GraphHelper::initialize();
         $posts = GraphHelper::getPosts();
 
         if ($posts === null) {
