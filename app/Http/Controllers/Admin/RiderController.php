@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Admin\{Datasheet, BandMember, StuffSection, Stuff, Patchlist, Rider};
 use PDF;
+use WKPDF;
 
 class RiderController extends Controller
 {
@@ -34,12 +35,36 @@ class RiderController extends Controller
 
     public function generatePDF(Request $request)
     {
-        $datasheet   = Datasheet::first();
-        $bandMembers = BandMember::all();
-
         $pdf = PDF::loadView('admin.rider-pdf', $this->getViewData());
 
         return $pdf->download('Fiche technique.pdf');
+    }
+
+    public function generateWKPDF(Request $request)
+    {
+        dump(shell_exec("wkhtmltopdf 2>&1"));
+        die();
+
+
+        $pdf  = WKPDF::generatePdf(view('admin.rider-pdf', $this->getViewData()));
+        $path = public_path('rider');
+
+        if (!is_dir($path)) {
+            mkdir($path, 0755, true);
+        }
+
+        $outputName = 'Fiche technique Muertissima';
+        $pdfPath    = $path.'/'.$outputName.'.pdf';
+
+
+        File::put($pdfPath, $pdf);
+
+        $headers = [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' =>  'attachment; filename="'.$outputName.'.pdf'.'"',
+        ];
+
+        return response()->download($pdfPath, $outputName.'.pdf', $headers);
     }
 
     private function getViewData(): array

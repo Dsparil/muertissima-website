@@ -35,6 +35,7 @@ Route::prefix('/admin')->name('admin.')->group(function () {
         Route::get('/', [RiderController::class, 'edit'])->name('edit');
         Route::post('/save', [RiderController::class, 'save'])->name('save');
         Route::get('/generate', [RiderController::class, 'generatePDF'])->name('generate');
+        Route::get('/wkgenerate', [RiderController::class, 'generateWKPDF'])->name('wkgenerate');
     });
 });
 
