@@ -42,10 +42,6 @@ class RiderController extends Controller
 
     public function generateWKPDF(Request $request)
     {
-        dump(shell_exec("wkhtmltopdf 2>&1"));
-        die();
-
-
         $pdf  = WKPDF::generatePdf(view('admin.rider-pdf', $this->getViewData()));
         $path = public_path('rider');
 
