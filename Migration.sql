@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `band_members` (
   `instruments` varchar(255) NOT NULL,
   `created_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `band_members`
@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `datasheet` (
   `staff` text NOT NULL,
   `languages` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `datasheet`
@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `patchlist` (
   `microphone_type` varchar(50) NOT NULL,
   `microphone_stand_size` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `patchlist`
@@ -120,7 +120,7 @@ CREATE TABLE IF NOT EXISTS `rider` (
   `title` varchar(255) NOT NULL,
   `content` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `rider`
@@ -151,7 +151,7 @@ CREATE TABLE IF NOT EXISTS `stuff` (
   `instrument_name` varchar(255) DEFAULT NULL,
   `content` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `stuff`
@@ -177,7 +177,7 @@ CREATE TABLE IF NOT EXISTS `stuff_sections` (
   `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `stuff_sections`
