@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{Datasheet, BandMember, StuffSection, Stuff};
+use App\Models\Admin\{Datasheet, BandMember, StuffSection, Stuff, Patchlist, Rider};
 use PDF;
 
 class RiderController extends Controller
@@ -26,6 +26,8 @@ class RiderController extends Controller
         BandMember::saveProcess($request->post('members'));
         StuffSection::saveProcess($request->post('sections'));
         Stuff::saveProcess($request->post('stuff'));
+        Patchlist::saveProcess($request->post('patchlist'));
+        Rider::saveProcess($request->post('rider'));
 
         return redirect(route('admin.rider.edit'));
     }
@@ -46,7 +48,9 @@ class RiderController extends Controller
             'datasheet'     => Datasheet::first(),
             'bandMembers'   => BandMember::all(),
             'stuffSections' => StuffSection::all(),
-            'stuff'         => Stuff::all()
+            'stuff'         => Stuff::all(),
+            'patchlist'     => Patchlist::all(),
+            'rider'         => Rider::all()
         ];
     }
 }

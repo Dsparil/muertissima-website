@@ -25,6 +25,13 @@
                 line-height: 35px;
                 font-size: 11px;
             }
+            table {
+                width: 100%;
+                font-size: 12px;
+            }
+            .even {
+                background: #eee;
+            }
         </style>
     </head>
     <body>
@@ -63,7 +70,7 @@
             <div class="pageBreak"></div>
 
             <h1>Matériel</h1>
-            <table border="1" style="width: 100%;font-size: 12px">
+            <table border="1">
                 <tr>
                     @foreach($stuffSections as $stuffSection)
                     <th style="width: {{ abs(100 / count($stuffSections)) }}%">{{ $stuffSection->name }}</th>
@@ -83,6 +90,45 @@
                     @endforeach
                 </tr>
             </table>
+
+            <div class="pageBreak"></div>
+
+            <h1>Patchlist</h1>
+            <table border="1" cellspacing="0">
+                <tr>
+                    <th>Entrée</th>
+                    <th>Musicien</th>
+                    <th>Instrument</th>
+                    <th>Micro</th>
+                    <th>Pied de micro</th>
+                </tr>
+                @foreach($patchlist as $patch)
+                <tr>
+                    <td>{{ $patch->input_number }}</td>
+                    <td>{{ $bandMembers->find($patch->band_member_id)->name }}</td>
+                    <td>{{ $patch->instrument_name }}</td>
+                    <td>{{ $patch->microphone_type }}</td>
+                    <td>{{ $patch->microphone_stand_size }}</td>
+                </tr>
+                @endforeach
+            </table>
+
+            <div class="pageBreak"></div>
+
+            <h1>Rider</h1>
+            <table border="0" cellspacing="10">
+                <tr>
+                    <td style="vertical-align: top; text-align: justify;">
+                        @foreach($rider as $riderSection)
+                        <h4 style="margin-bottom: 0">{{ $riderSection->title }}</h4>
+                        <div style="margin-top: 0">{!! $riderSection->content !!}</div>
+                            @if($loop->iteration % 5 == 0)
+                    </td>
+                    <td style="vertical-align: top; text-align: justify;">
+                            @endif
+                        @endforeach
+                    </td>
+                </tr>
         </main>
     </body>
 </html>

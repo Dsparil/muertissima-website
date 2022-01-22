@@ -17,6 +17,12 @@ Gestion de la fiche technique
         <li class="nav-item" role="presentation">
             <button class="nav-link bg-dark text-light" id="stuff-tab" data-toggle="tab" data-target="#stuff" type="button" role="tab" aria-controls="stuff" aria-selected="false">Matériel</button>
         </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link bg-dark text-light" id="patchlist-tab" data-toggle="tab" data-target="#patchlist" type="button" role="tab" aria-controls="patchlist" aria-selected="false">Patchlist</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link bg-dark text-light" id="rider-tab" data-toggle="tab" data-target="#rider" type="button" role="tab" aria-controls="rider" aria-selected="false">Rider</button>
+        </li>
     </ul>
     <div class="tab-content" id="myTabContent">
         <!-- Informations générales -->
@@ -30,6 +36,14 @@ Gestion de la fiche technique
         <!-- Matériel -->
         <div class="tab-pane fade" id="stuff" role="tabpanel" aria-labelledby="stuff-tab">
             @include('admin.rider.stuff')
+        </div>
+        <!-- Patchlist -->
+        <div class="tab-pane fade" id="patchlist" role="tabpanel" aria-labelledby="patchlist-tab">
+            @include('admin.rider.patchlist')
+        </div>
+        <!-- Rider -->
+        <div class="tab-pane fade" id="rider" role="tabpanel" aria-labelledby="rider-tab">
+            @include('admin.rider.rider')
         </div>
     </div>
     
