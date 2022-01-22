@@ -31,9 +31,7 @@ class GraphHelper
             $response = (Http::get($url))->object();
 
             Cache::put('about', $response->description_html ?? '', self::$cacheTTL);
-            dump('HERE');
         }
-            dump('HERE');
 
         return Cache::get('about');
     }
