@@ -10,6 +10,9 @@
                 <a class="nav-link{{ $page == 'home'? ' active' : '' }}" aria-current="page" href="{{ route('home') }}">💀 Home</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link{{ $page == 'about'? ' active' : '' }}" href="{{ route('about') }}">💀 About us</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link{{ $page == 'shows'? ' active' : '' }}" href="{{ route('shows') }}">💀 Shows</a>
             </li>
             <li class="nav-item">
@@ -26,9 +29,6 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link{{ $page == 'contact'? ' active' : '' }}" href="{{ route('contact') }}">💀 Contact</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link{{ $page == 'about'? ' active' : '' }}" href="{{ route('about') }}">💀 About us</a>
             </li>
         </ul>
     </div>

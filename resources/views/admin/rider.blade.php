@@ -23,6 +23,9 @@ Gestion de la fiche technique
         <li class="nav-item" role="presentation">
             <button class="nav-link bg-dark text-light" id="rider-tab" data-toggle="tab" data-target="#rider" type="button" role="tab" aria-controls="rider" aria-selected="false">Rider</button>
         </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link bg-dark text-light" id="scene-tab" data-toggle="tab" data-target="#scene" type="button" role="tab" aria-controls="scene" aria-selected="false">Plan de scène</button>
+        </li>
     </ul>
     <div class="tab-content" id="myTabContent">
         <!-- Informations générales -->
@@ -44,6 +47,10 @@ Gestion de la fiche technique
         <!-- Rider -->
         <div class="tab-pane fade" id="rider" role="tabpanel" aria-labelledby="rider-tab">
             @include('admin.rider.rider')
+        </div>
+        <!-- Plan de scène -->
+        <div class="tab-pane fade" id="scene" role="tabpanel" aria-labelledby="scene-tab">
+            @include('admin.rider.scene-plan')
         </div>
     </div>
     

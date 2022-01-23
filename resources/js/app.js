@@ -1,4 +1,4 @@
-window.$ = require('jquery');
+window.$ = window.jQuery = require('jquery');
 window._ = require('lodash');
 
 try {
@@ -8,6 +8,7 @@ try {
 }
 
 // require('mdbootstrap/js/mdb');
+import 'jquery-ui/ui/widgets/draggable.js';
 
 /**
  * to our Laravel back-end. This library automatically handles sending the

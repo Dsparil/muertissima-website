@@ -22,11 +22,17 @@ class Datasheet extends Model
             $ds = new self();
         }
 
-        $ds->general_info = $data['general_info'] ?? '';
-        $ds->networks     = $data['networks'] ?? '';
-        $ds->staff        = $data['staff'] ?? '';
-        $ds->languages    = $data['languages'] ?? '';
+        $ds->general_info  = $data['general_info'] ?? '';
+        $ds->networks      = $data['networks'] ?? '';
+        $ds->staff         = $data['staff'] ?? '';
+        $ds->languages     = $data['languages'] ?? '';
+        $ds->scenePlanData = $data['scenePlanData'] ?? '';
 
         $ds->save();
+    }
+
+    public function getScenePlanDataAttribute($data): array
+    {
+        return ($data !== null) ? json_decode($data) : [];
     }
 }

@@ -9,6 +9,7 @@
         <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/tinymce/tinymce.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/admin/crudobject.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/admin/jquery.ui.touch-punch.min.js') }}"></script>
         <title>
             @yield('title')
         </title>
