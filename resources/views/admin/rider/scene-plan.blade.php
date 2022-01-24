@@ -1,16 +1,6 @@
 <div class="row">
     <div class="col-lg-8">
-        <div id="scene-plan" style="width: 100%; height: 600px; background: #fff;">
-            @foreach($datasheet->scenePlanData as $item)
-            <div class="scenePlanItem" data-code="{{ $item->code }}" style="top: {{ $item->top }}; left: {{ $item->left }}; width: {{ $item->width }}; height: {{ $item->height }}">
-                @if(substr($item->code, 0, 6) == 'member')
-                    {{ $bandMembers->find(substr($item->code, 7))->name }}
-                @else
-                    {{ $scenePlanItems->filter->isCode($item->code)->first()->name }}
-                @endif
-            </div>
-            @endforeach
-        </div>
+        @include('admin.scene-plan')
     </div>
     <div class="col-lg-4" id="scene-plan-items">
         <div>
@@ -30,38 +20,25 @@
     </div>
 </div>
 
-<style type="text/css">
-    #scene-plan {
-        font-size: 10px;
-        width: 100%;
-        height: 600px;
-        background: #fff;
-    }
-    .scenePlanItem {
-        color: #000;
-        background-color: #eee;
-        border: 1px solid #000;
-        cursor: move;
-        position: absolute;
-    }
-</style>
-
 <script type="text/javascript">
     $(document).ready(function() {
         var $scenePlan     = $.extend($('#scene-plan'), {
             buidDraggable: function() {
                 this.find('[data-code]').draggable({
                     containment: this,
-                    stop:        function () {
-                        var $this        = $(this);
-                        var parentWidth  = parseFloat($scenePlan.width());
-                        var parentHeight = parseFloat($scenePlan.height());
-                        var position     = $this.position();
-
-                        $this.css({
-                            'left': (100 * parseFloat(position.left) / parentWidth) + '%',
-                            'top':  (100 * parseFloat(position.top) / parentHeight) + '%'
-                        });
+                });
+                this.find('[data-code]').each(function(idx, item) {
+                    var $item = $(item);
+                    var code  = $item.attr('data-code');
+                    console.log('code = ', code);
+                    var spi = document.$scenePlanItems.getFirstItemBy('code', code);
+                    console.log(spi);
+                    if (spi !== null) {
+                        $item.css('background-image', 'url(' + spi.image + ')');
+                        $item.css('border', 'none');
+                        $item.html('');
+                    } else {
+                        $item.css('background-color', '#eee');
                     }
                 });
             }
@@ -80,20 +57,12 @@
             var parentHeight = parseFloat($scenePlan.height());
             var objectWidth  = parseFloat((parentWidth / referenceWidth) * dimensions[0]);
 
-            console.log(
-                'parentWidth: ', parentWidth,
-                ' parentHeight:', parentHeight,
-                ' dimensions:', dimensions,
-                ' width%: ', (100 * objectWidth / parentWidth) + '%',
-                ' height%: ', (100 * parseFloat(dimensions[1]) / parentHeight) + '%'
-            );
-
             var $object = $('<div>')
                 .html(text)
                 .attr('class', 'scenePlanItem')
                 .css({
-                    'width':  (100 * objectWidth / parentWidth) + '%', //dimensions[0] + 'px', 
-                    'height': (100 * parseFloat(dimensions[1]) / parentHeight) + '%', //dimensions[1] + 'px',
+                    'width':  dimensions[0] + 'px', 
+                    'height': dimensions[1] + 'px',
                     'top':    0
                 })
                 .attr('data-code', code)

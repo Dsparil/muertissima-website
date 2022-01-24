@@ -5,7 +5,7 @@ Gestion de la fiche technique
 @endsection
 
 @section('content')
-<form id="riderForm" method="POST" action="{{ route('admin.rider.save') }}">
+<form id="riderForm" method="POST" action="{{ route('admin.rider.save') }}" enctype="multipart/form-data">
     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
@@ -22,6 +22,9 @@ Gestion de la fiche technique
         </li>
         <li class="nav-item" role="presentation">
             <button class="nav-link bg-dark text-light" id="rider-tab" data-toggle="tab" data-target="#rider" type="button" role="tab" aria-controls="rider" aria-selected="false">Rider</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link bg-dark text-light" id="spi-tab" data-toggle="tab" data-target="#spi" type="button" role="tab" aria-controls="spi" aria-selected="false">Éléments plan de scène</button>
         </li>
         <li class="nav-item" role="presentation">
             <button class="nav-link bg-dark text-light" id="scene-tab" data-toggle="tab" data-target="#scene" type="button" role="tab" aria-controls="scene" aria-selected="false">Plan de scène</button>
@@ -47,6 +50,10 @@ Gestion de la fiche technique
         <!-- Rider -->
         <div class="tab-pane fade" id="rider" role="tabpanel" aria-labelledby="rider-tab">
             @include('admin.rider.rider')
+        </div>
+        <!-- Éléments plan de scène -->
+        <div class="tab-pane fade" id="spi" role="tabpanel" aria-labelledby="spi-tab">
+            @include('admin.rider.scene-plan-items')
         </div>
         <!-- Plan de scène -->
         <div class="tab-pane fade" id="scene" role="tabpanel" aria-labelledby="scene-tab">

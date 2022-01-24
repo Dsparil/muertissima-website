@@ -131,6 +131,12 @@
                         @endforeach
                     </td>
                 </tr>
+            </table>
+
+            <div class="pageBreak"></div>
+
+            <h1>Plan de scène</h1>
+            @include('admin.scene-plan', ['isPdf' => true])
         </main>
     </body>
 </html>

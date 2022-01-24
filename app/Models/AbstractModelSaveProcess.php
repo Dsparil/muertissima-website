@@ -30,7 +30,7 @@ class AbstractModelSaveProcess extends Model
                 }
             }
 
-            $DBitem->fillFromForm($item);
+            $DBitem->fillFromForm($item, $id);
 
             $DBitem->save();
         }

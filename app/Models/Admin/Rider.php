@@ -14,7 +14,7 @@ class Rider extends AbstractModelSaveProcess
 
     protected $table = 'rider';
 
-    public function fillFromForm(array $data)
+    public function fillFromForm(array $data, string $id)
     {
         $this->title   = $data['title'];
         $this->content = $data['content'];

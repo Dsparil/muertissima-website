@@ -13,6 +13,19 @@ var crudObject = {
         this.attr(this.attributeName, JSON.stringify(items));
     },
 
+    getFirstItemBy(field, value) {
+        var items = this.getItems();
+
+        for (idx in items) {
+            console.log(items[idx][field]);
+            if (items[idx][field] == value) {
+                return items[idx];
+            }
+        }
+
+        return null;
+    },
+
     deleteItemById: function(id) {
         var items = this.getItems();
 
@@ -80,7 +93,8 @@ var crudObject = {
             var newItem = {};
             for (var idx in this.fieldList) {
                 var field = this.fieldList[idx];
-                newItem[field] = this.getNewItemInput(field).val();
+                var newItemInput = this.getNewItemInput(field);
+                newItem[field] = (newItemInput.length > 0)? newItemInput.val() : '';
                 this.getNewItemInput(field).val('');
             }
             this.newItem(newItem);

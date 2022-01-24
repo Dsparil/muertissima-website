@@ -14,7 +14,7 @@ class Patchlist extends AbstractModelSaveProcess
 
     protected $table = 'patchlist';
 
-    public function fillFromForm(array $data)
+    public function fillFromForm(array $data, string $id)
     {
         $this->input_number          = $data['input_number'];
         $this->band_member_id        = $data['band_member_id'];

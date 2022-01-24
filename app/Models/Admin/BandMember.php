@@ -13,7 +13,7 @@ class BandMember extends AbstractModelSaveProcess
 
     protected $table = 'band_members';
 
-    public function fillFromForm(array $data)
+    public function fillFromForm(array $data, string $id)
     {
         $this->name        = $data['name'];
         $this->instruments = $data['instruments'];

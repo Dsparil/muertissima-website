@@ -15,7 +15,7 @@
         </title>
     </head>
     <body>
-        <div class="container mainContainer">
+        <div class="container-fuild mainContainer">
             <h1>Admin - @yield('title')</h1>
             @yield('content')
         </div>

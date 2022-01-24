@@ -14,7 +14,7 @@ class Stuff extends AbstractModelSaveProcess
 
     protected $table = 'stuff';
 
-    public function fillFromForm(array $data)
+    public function fillFromForm(array $data, string $id)
     {
         $this->instrument_name = $data['instrument_name'];
         $this->section_id      = $data['section_id'];
