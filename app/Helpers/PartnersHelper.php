@@ -19,6 +19,10 @@ class PartnersHelper
                 'link'  => 'https://www.facebook.com/Ponks-Plectre-421674218030046/',
                 'image' => asset('images/logo_plonksplectre.jpg')
             ],
+            'Skull Strings' => [
+                'link'  => 'https://www.facebook.com/Skull-strings-251728064891276',
+                'image' => asset('images/logo_skullstrings.jpg')
+            ],
             'Lower Tones Place Studios' => [
                 'link'  => 'https://www.facebook.com/lowertonesplace/',
                 'image' => asset('images/logo_lowertones.jpg')

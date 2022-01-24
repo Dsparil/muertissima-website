@@ -44,8 +44,15 @@ Muertissima - About us
 </div>
 <div class="row text-center">
     @foreach($partners as $name => $partner)
-    <div class="col-4 mt-3 mb-3">
-        <a href="{{ $partner['link'] }}"><img src="{{ $partner['image'] }}" alt="{{ $name }}" width="200" /></a>
+    <div class="col-sm-6 col-md-4 col-lg-3 mt-3 mb-3">
+        <div class="card bg-dark m-2">
+            <div class="card-body">
+                <a href="{{ $partner['link'] }}">
+                    <h5 class="card-title">{{ $name }}</h5>
+                    <img class="card-img-top" src="{{ $partner['image'] }}" alt="{{ $name }}" width="200" />
+                </a>
+            </div>
+        </div>
     </div>
     @endforeach
 </div>
