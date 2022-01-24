@@ -2,7 +2,7 @@
 
 git stash
 git pull origin master
-php ~/composer.phar update
+php ~/composer.phar install
 # rm -rf node_modules/
 npm install
 npm run dev
