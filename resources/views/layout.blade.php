@@ -18,6 +18,8 @@
         <div class="container mainContainer">
             <div class="row">
                 <div class="col">
+                    <!-- <span class="flag-icon flag-icon-fr"></span> - 
+                    <span class="flag-icon flag-icon-gb"></span> -->
                     @yield('header')
                 </div>
             </div>

@@ -31,6 +31,7 @@ class RiderController extends Controller
         Stuff::saveProcess($request->post('stuff'));
         Patchlist::saveProcess($request->post('patchlist'));
         Rider::saveProcess($request->post('rider'));
+        ScenePlanItem::saveProcess($request->post('scenePlanItems'));
 
         return redirect(route('admin.rider.edit'));
     }

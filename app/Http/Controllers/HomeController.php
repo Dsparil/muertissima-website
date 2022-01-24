@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\FBPost;
-use App\Helpers\GraphHelper;
+use App\Helpers\{GraphHelper, PartnersHelper};
 use Illuminate\Support\Collection;
 
 class HomeController extends Controller
@@ -25,9 +25,10 @@ class HomeController extends Controller
     public function about(Request $request)
     {
         return view('about', [
-            'page'  => 'about',
-            'posts' => FBPost::hydrateFromSource($this->getPosts(), 'isLineup')->reverse(),
-            'about' => GraphHelper::getAboutInfo()
+            'page'     => 'about',
+            'posts'    => FBPost::hydrateFromSource($this->getPosts(), 'isLineup')->reverse(),
+            'about'    => GraphHelper::getAboutInfo(),
+            'partners' => PartnersHelper::getList()
         ]);
     }
 

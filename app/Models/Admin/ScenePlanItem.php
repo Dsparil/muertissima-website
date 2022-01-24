@@ -3,9 +3,9 @@
 namespace App\Models\Admin;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use App\Models\AbstractModelSaveProcess;
 
-class ScenePlanItem extends Model
+class ScenePlanItem extends AbstractModelSaveProcess
 {
     use HasFactory;
 
@@ -13,6 +13,14 @@ class ScenePlanItem extends Model
     public const UPDATED_AT = null;
 
     protected $table = 'scene_plan_items';
+
+    public function fillFromForm(array $data)
+    {
+        $this->code       = $data['code'];
+        $this->name       = $data['name'];
+        $this->dimensions = $data['dimensions'];
+        $this->image      = $data['content'];
+    }
 
     public  function isCode(string $code): bool
     {

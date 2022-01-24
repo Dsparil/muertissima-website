@@ -37,6 +37,23 @@ Muertissima - About us
     </div>
     @endforeach
 </div>
+<div class="row mt-2">
+    <div class="col">
+        <h1>Partenaires</h1>
+    </div>
+</div>
+<div class="row text-center">
+    @foreach($partners as $name => $partner)
+    <div class="col-4 mt-3 mb-3">
+        <a href="{{ $partner['link'] }}"><img src="{{ $partner['image'] }}" alt="{{ $name }}" width="200" /></a>
+    </div>
+    @endforeach
+</div>
+<div class="row mt-2">
+    <div class="col">
+        <h1>Liens externes</h1>
+    </div>
+</div>
 <div class="row">
     <div class="col">
         <a href="https://www.spirit-of-metal.com/fr/band/Muertissima">Muertissima sur Spirit of Metal</a>

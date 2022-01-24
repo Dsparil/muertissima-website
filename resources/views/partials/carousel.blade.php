@@ -1,8 +1,8 @@
 <div id="carousel{{ $id }}" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
-        @foreach($post->attachments as $idx => $attachment)
-        <div class="carousel-item{{ $idx == 0? ' active' : '' }}">
-            <img class="d-block w-100" src="{{ $attachment->pictureUrl }}" alt="photo_{{ $idx }}">
+        @foreach($post->attachments as $attachment)
+        <div class="carousel-item{{ $loop->first? ' active' : '' }}">
+            <img class="d-block w-100" src="{{ $attachment->pictureUrl }}" alt="photo_{{ $loop->iteration }}">
         </div>
         @endforeach
     </div>

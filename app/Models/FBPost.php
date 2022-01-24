@@ -107,7 +107,13 @@ class FBPost extends AbstractHydratableModel
 
         foreach ($data as $subdata) {
             if (isset($subdata->subattachments)) {
-                $this->attachments = $this->attachments->merge(FBAttachment::hydrateFromSource(collect($subdata->subattachments->data)));
+                $this->attachments = $this
+                    ->attachments
+                    ->merge(FBAttachment::hydrateFromSource(collect($subdata->subattachments->data)))
+                    ->filter(function($item) {
+                        return strtolower($item->type) != 'album';
+                    })
+                ;
             }
         }
 

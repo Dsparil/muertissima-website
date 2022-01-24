@@ -23,6 +23,8 @@
     },
     "dependencies": {
         "chart.js": "^3.7.0",
+        "flag-icon": "^2.5.0",
+        "flag-icon-css": "^4.1.7",
         "jquery": "^3.6.0",
         "mdbootstrap": "^4.20.0",
         "popper.js": "^1.16.1",

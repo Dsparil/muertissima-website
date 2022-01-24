@@ -36,18 +36,9 @@ Muertissima - Shows
     </div>
 </div>
 <div class="row">
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    <div class="col-6">
-        <hr />
-        <form method="POST" action="{{ route('contact.postMessage') }}">
-            <div class="form-group">
-                <label for="contactMessage">Écrivez-nous un p'tit mot !</label>
-                <textarea class="form-control bg-dark text-light" id="contactMessage" rows="3"></textarea>
-            </div>
-            <div class="g-recaptcha" data-sitekey="{{ env('RECAPTCHA_SITEKEY') }}"></div>
-            <br/>
-            <input type="submit" value="Envoyer" class="btn btn-dark mb-2">
-        </form>
+    <div class="col text-center my-5">
+        <a href="mailto:{{ env('CONTACT_MAIL') }}">Envoyez-nous un message à : {{ env('CONTACT_MAIL') }}</a>
+        <div style="display: block; height: 300px;"></div>
     </div>
 </div>
 @endsection
