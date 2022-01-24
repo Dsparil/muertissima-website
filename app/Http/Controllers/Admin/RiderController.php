@@ -38,6 +38,7 @@ class RiderController extends Controller
 
     public function generatePDF(Request $request)
     {
+        set_time_limit(0);
         $pdf = PDF::loadView('admin.rider-pdf', $this->getViewData());
 
         return $pdf->download('Fiche technique.pdf');
