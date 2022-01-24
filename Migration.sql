@@ -33,7 +33,7 @@ CREATE TABLE `band_members` (
   `name` varchar(255) NOT NULL,
   `instruments` varchar(255) NOT NULL,
   `created_at` datetime NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `band_members`
@@ -59,7 +59,7 @@ CREATE TABLE `datasheet` (
   `staff` text NOT NULL,
   `languages` varchar(100) NOT NULL,
   `scenePlanData` json DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `datasheet`
@@ -82,7 +82,7 @@ CREATE TABLE `patchlist` (
   `instrument_name` varchar(255) NOT NULL,
   `microphone_type` varchar(50) NOT NULL,
   `microphone_stand_size` varchar(50) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `patchlist`
@@ -117,7 +117,7 @@ CREATE TABLE `rider` (
   `id` int UNSIGNED NOT NULL,
   `title` varchar(255) NOT NULL,
   `content` text NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `rider`
@@ -147,7 +147,7 @@ CREATE TABLE `scene_plan_items` (
   `name` varchar(30) NOT NULL,
   `dimensions` varchar(7) NOT NULL,
   `image` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `scene_plan_items`
@@ -197,7 +197,7 @@ CREATE TABLE `stuff` (
   `band_member_id` int UNSIGNED DEFAULT NULL,
   `instrument_name` varchar(255) DEFAULT NULL,
   `content` text NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `stuff`
@@ -222,7 +222,7 @@ DROP TABLE IF EXISTS `stuff_sections`;
 CREATE TABLE `stuff_sections` (
   `id` int UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `stuff_sections`
