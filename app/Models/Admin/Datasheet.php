@@ -33,6 +33,6 @@ class Datasheet extends Model
 
     public function getScenePlanDataAttribute($data): array
     {
-        return ($data !== null) ? json_decode($data) : [];
+        return ($data !== null && $data != 'null') ? json_decode($data) : [];
     }
 }

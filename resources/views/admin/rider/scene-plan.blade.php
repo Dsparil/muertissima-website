@@ -27,20 +27,6 @@
                 this.find('[data-code]').draggable({
                     containment: this,
                 });
-                this.find('[data-code]').each(function(idx, item) {
-                    var $item = $(item);
-                    var code  = $item.attr('data-code');
-                    console.log('code = ', code);
-                    var spi = document.$scenePlanItems.getFirstItemBy('code', code);
-                    console.log(spi);
-                    if (spi !== null) {
-                        $item.css('background-image', 'url(' + spi.image + ')');
-                        $item.css('border', 'none');
-                        $item.html('');
-                    } else {
-                        $item.css('background-color', '#eee');
-                    }
-                });
             }
         });
 
@@ -56,31 +42,47 @@
             var parentWidth  = parseFloat($scenePlan.width());
             var parentHeight = parseFloat($scenePlan.height());
             var objectWidth  = parseFloat((parentWidth / referenceWidth) * dimensions[0]);
+            var spi = document.$scenePlanItems.getFirstItemBy('code', code);
 
-            var $object = $('<div>')
-                .html(text)
-                .attr('class', 'scenePlanItem')
-                .css({
-                    'width':  dimensions[0] + 'px', 
-                    'height': dimensions[1] + 'px',
-                    'top':    0
-                })
+            if (spi !== null) {
+                var $object = $('<img>')
+                    .attr('src', spi.image)
+                    .attr('width', dimensions[0] + 'px')
+                    .attr('height', dimensions[1] + 'px')
+                ;
+            } else {
+                var $object = $('<div>')
+                    .html(text)
+                    .css({
+                        'width':  dimensions[0] + 'px', 
+                        'height': dimensions[1] + 'px',
+                        'top':    0
+                    })
+                ;
+            }
+
+            $scenePlan.append($object
                 .attr('data-code', code)
-            ;
-
-            $scenePlan.append($object);
-
+                .attr('class', 'scenePlanItem')
+            );
             $scenePlan.buidDraggable();
         });
 
-        $scenePlan.on('dblclick', 'div[data-code]', function(event) {
+        $scenePlan.on('dblclick', '[data-code]', function(event) {
             $(event.target).remove();
         });
 
         $riderForm.on('submit', function(event) {
             var itemCounter = 0;
             $scenePlan.find('[data-code]').each(function(idx, item) {
-                var $item  = $(item);
+                var width, height, $item  = $(item);
+                if ($item.prop('tagName').toLowerCase() == 'img') {
+                    width  = $item.attr('width');
+                    height = $item.attr('height');
+                } else {
+                    width  = item.style.width;
+                    height = item.style.height;
+                }
                 $riderForm.append($('<input>')
                     .attr('type', 'hidden')
                     .attr('name', 'scenePlanItem[' + itemCounter + '][code]')
@@ -99,12 +101,12 @@
                 $riderForm.append($('<input>')
                     .attr('type', 'hidden')
                     .attr('name', 'scenePlanItem[' + itemCounter + '][width]')
-                    .attr('value', item.style.width)
+                    .attr('value', width)
                 );
                 $riderForm.append($('<input>')
                     .attr('type', 'hidden')
                     .attr('name', 'scenePlanItem[' + itemCounter + '][height]')
-                    .attr('value', item.style.height)
+                    .attr('value', height)
                 );
                 itemCounter++;
             });

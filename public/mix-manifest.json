@@ -30,5 +30,6 @@
     "/js/tinymce/tinymce.js": "/js/tinymce/tinymce.js",
     "/js/tinymce/tinymce.min.js": "/js/tinymce/tinymce.min.js",
     "/js/admin/crudobject.js": "/js/admin/crudobject.js",
-    "/js/admin/jquery.ui.touch-punch.min.js": "/js/admin/jquery.ui.touch-punch.min.js"
+    "/js/admin/jquery.ui.touch-punch.min.js": "/js/admin/jquery.ui.touch-punch.min.js",
+    "/images/logo_skullstrings.jpg": "/images/logo_skullstrings.jpg"
 }

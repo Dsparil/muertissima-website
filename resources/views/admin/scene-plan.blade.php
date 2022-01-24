@@ -8,20 +8,20 @@
     }
     .scenePlanItem {
         color: #000;
-        border: 1px solid #000;
         cursor: move;
         text-align: center;
         font-weight: bold;
         position: absolute;
-        background-repeat:no-repeat;
-        background-size:contain;
-        background-position:center;
+    }
+    div.scenePlanItem {
+        border: 1px solid #000;
+        background-color: #eee;
     }
 </style>
 <div id="scene-plan">
     @foreach($datasheet->scenePlanData as $item)
-    @if(isset($isPdf) && $scenePlanItems->filter->isCode($item->code)->first() !== null)
-        <img style="position: absolute; top: {{ $item->top }}; left: {{ $item->left }};" src="{{ $scenePlanItems->filter->isCode($item->code)->first()->image }}" width="{{ $item->width }}" height="{{ $item->height }}" />
+    @if($scenePlanItems->filter->isCode($item->code)->first() !== null && $scenePlanItems->filter->isCode($item->code)->first()->image !== null)
+        <img class="scenePlanItem" data-code="{{ $item->code }}" style="position: absolute; top: {{ $item->top }}; left: {{ $item->left }};" src="{{ $scenePlanItems->filter->isCode($item->code)->first()->image }}" width="{{ $item->width }}" height="{{ $item->height }}" />
     @else
         <div class="scenePlanItem" data-code="{{ $item->code }}" style="top: {{ $item->top }}; left: {{ $item->left }}; width: {{ $item->width }}; height: {{ $item->height }};{{ (!empty($item->image))? ' background-image: url(\''.$scenePlanItems->filter->isCode($item->code)->first()->image.'\');' : '' }}">
             @if(substr($item->code, 0, 6) == 'member')
