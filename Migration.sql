@@ -146,7 +146,7 @@ CREATE TABLE `scene_plan_items` (
   `code` varchar(20) NOT NULL,
   `name` varchar(30) NOT NULL,
   `dimensions` varchar(7) NOT NULL,
-  `image` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci
+  `image` longtext CHARACTER SET utf8mb4
 ) DEFAULT CHARSET=utf8mb4;
 
 --
