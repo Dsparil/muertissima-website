@@ -8,4 +8,5 @@ Interesting features, such as :
   - Automatic news discovery
   - Automatic shows discovery
   - Automatic photo galleries
-- Bandcamp products integration
+- Bandcamp products integration without an API access
+- Tech sheet generator for band (admin section).
