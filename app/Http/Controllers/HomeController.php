@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\FBPost;
+use App\Models\{FBPost, Quote};
 use App\Helpers\{GraphHelper, PartnersHelper};
 use Illuminate\Support\Collection;
 
@@ -17,6 +17,7 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         return view('home', [
+            'quote' => Quote::random(),
             'page'  => 'home',
             'posts' => FBPost::hydrateFromSource($this->getPosts(), 'isHomePost')->slice(0, 30)
         ]);
@@ -25,6 +26,7 @@ class HomeController extends Controller
     public function about(Request $request)
     {
         return view('about', [
+            'quote'    => Quote::random(),
             'page'     => 'about',
             'posts'    => FBPost::hydrateFromSource($this->getPosts(), 'isLineup')->reverse(),
             'about'    => GraphHelper::getAboutInfo(),
@@ -35,6 +37,7 @@ class HomeController extends Controller
     public function interviews(Request $request)
     {
         return view('interviews', [
+            'quote' => Quote::random(),
             'page'  => 'interviews',
             'posts' => FBPost::hydrateFromSource($this->getPosts(), 'isInterview')
         ]);
@@ -43,6 +46,7 @@ class HomeController extends Controller
     public function photos(Request $request)
     {
         return view('photos', [
+            'quote' => Quote::random(),
             'page'  => 'photos',
             'posts' => FBPost::hydrateFromSource($this->getPosts(), 'isPhoto')
         ]);
@@ -50,12 +54,16 @@ class HomeController extends Controller
 
     public function music(Request $request)
     {
-        return view('music', ['page' => 'music']);
+        return view('music', [
+            'quote' => Quote::random(),
+            'page'  => 'music'
+        ]);
     }
 
     public function shows(Request $request)
     {
         return view('shows', [
+            'quote' => Quote::random(),
             'page'  => 'shows',
             'posts' => FBPost::hydrateFromSource($this->getPosts(), 'isDisplayableEvent')
         ]);

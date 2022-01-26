@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Helpers\BandcampHelper;
-use App\Models\BandcampProduct;
+use App\Models\{Quote, BandcampProduct};
 
 class ShopController extends Controller
 {
@@ -13,6 +13,7 @@ class ShopController extends Controller
         $productNodes = BandcampHelper::getProducts();
 
         return view('products', [
+            'quote'    => Quote::random(),
             'page'     => 'products',
             'products' => BandcampProduct::hydrateFromSource($productNodes)
         ]);

@@ -27,6 +27,14 @@
                     <!-- <span class="flag-icon flag-icon-fr"></span> - 
                     <span class="flag-icon flag-icon-gb"></span> -->
                     @yield('header')
+                    
+                    @if(isset($quote))
+                    <div class="row">
+                        <div class="col-lg-2"></div>
+                        <div class="col text-center mb-2" style="color: #888;font-size: 10px;">&laquo; {{ $quote->text }} &raquo; &mdash; <i>{{ $quote->author }}</i></div>
+                        <div class="col-lg-2"></div>
+                    </div>
+                    @endif
                 </div>
             </div>
             @if(isset($page))
