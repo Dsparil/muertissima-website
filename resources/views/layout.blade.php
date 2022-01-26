@@ -4,10 +4,16 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="author" content="Simon PERRIN (https://github.com/Dsparil)" />
-        <meta name="copyright" content="Simon PERRIN"/>
-        <meta name="robots" content="follow"/>
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+        <meta property="og:title" content="Webissima" />
+        <meta property="og:description" content="Muertissima's fucking website !" />
+        <meta property="og:image" content="{{ url(asset('images/muertissima_body.jpg')) }}" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="{{ url('/') }}" />
+        <meta property="fb:app_id" content="{{ env('FB_APP_ID') }}" />
+        <meta name="copyright" content="Simon PERRIN" />
+        <meta name="robots" content="follow" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
         <link href="{{ asset('css/app.css') }}" rel="stylesheet" />
         <script type="text/javascript" src="{{ asset('js/app.js') }}" defer></script>
         <title>
