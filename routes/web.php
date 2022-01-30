@@ -41,6 +41,10 @@ Route::post('/pickle', function() {
     return view('easteregg');
 })->name('easteregg');
 
+Route::post('/doggystyle', function() {
+    return view('easteregg2');
+})->name('easteregg2');
+
 Route::get('/js/js-vars.js', function() {
     $content = view('js-vars');
     return response($content)->header('Content-Type', 'application/javascript');

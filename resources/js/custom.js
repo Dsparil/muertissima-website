@@ -21,6 +21,9 @@ $(document).ready(function(){
             } else if (linkClickCount == 3 && $link.attr('id') == 'music-link') {
                 var $input = $('<input>').attr('name', '_token').attr('value', M.TOKEN);
                 $('<form>').attr('method', 'POST').attr('action', M.EASTEREGG_URL).append($input).appendTo('body').submit();
+            } else if (linkClickCount == 4 && $link.attr('id') == 'music-link') {
+                var $input = $('<input>').attr('name', '_token').attr('value', M.TOKEN);
+                $('<form>').attr('method', 'POST').attr('action', M.EASTEREGG2_URL).append($input).appendTo('body').submit();
             } else {
                 $.ajax({
                     url: M.RANDOM_QUOTE_URL,
