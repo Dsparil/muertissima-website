@@ -7,6 +7,7 @@
     "/images/logo_milkyway.png": "/images/logo_milkyway.png",
     "/images/logo_musicrecords.jpg": "/images/logo_musicrecords.jpg",
     "/images/logo_plonksplectre.jpg": "/images/logo_plonksplectre.jpg",
+    "/images/logo_skullstrings.jpg": "/images/logo_skullstrings.jpg",
     "/images/logo_studiosvallet.jpg": "/images/logo_studiosvallet.jpg",
     "/images/logo-covent.jpg": "/images/logo-covent.jpg",
     "/images/logo-white-small.png": "/images/logo-white-small.png",
@@ -31,5 +32,5 @@
     "/js/tinymce/tinymce.min.js": "/js/tinymce/tinymce.min.js",
     "/js/admin/crudobject.js": "/js/admin/crudobject.js",
     "/js/admin/jquery.ui.touch-punch.min.js": "/js/admin/jquery.ui.touch-punch.min.js",
-    "/images/logo_skullstrings.jpg": "/images/logo_skullstrings.jpg"
+    "/js/custom.js": "/js/custom.js"
 }

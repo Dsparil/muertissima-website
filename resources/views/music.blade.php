@@ -4,12 +4,8 @@
 Muertissima - Music
 @endsection
 
-@section('header')
-<div class="row">
-    <div class="col s12 text-center">
-        <img class="header" src="{{ asset('images/logo.jpg') }}" />
-    </div>
-</div>
+@section('meta-description')
+<meta name="description" content="Musique de Muertissima, vidéos, lives" />
 @endsection
 
 @section('content')

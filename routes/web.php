@@ -7,6 +7,8 @@ use App\Http\Controllers\{
     ContactController,
     Admin\RiderController as RiderController
 };
+use App\Models\Quote;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +29,22 @@ Route::get('/interviews', [HomeController::class,    'interviews'])->name('inter
 Route::get('/about',      [HomeController::class,    'about'])->name('about');
 Route::get('/shop',       [ShopController::class,    'index'])->name('shop');
 Route::get('/contact',    [ContactController::class, 'index'])->name('contact');
+
+Route::get('/random-quote', function(Request $request) {
+    if (!$request->ajax()) {
+        abort(404);
+    }
+    echo Quote::random();
+})->name('random-quote');
+
+Route::post('/easteregg', function() {
+    return view('easteregg');
+})->name('easteregg');
+
+Route::get('/js/js-vars.js', function() {
+    $content = view('js-vars');
+    return response($content)->header('Content-Type', 'application/javascript');
+})->name('js-vars');
 
 Route::post('/contact/message', [ContactController::class, 'index'])->name('contact.postMessage');
 

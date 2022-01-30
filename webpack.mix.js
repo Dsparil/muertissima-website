@@ -20,4 +20,5 @@ mix.webpackConfig({
     .copy('resources/images/*', 'public/images')
     .copyDirectory('node_modules/tinymce', 'public/js/tinymce')
     .copyDirectory('resources/js/admin', 'public/js/admin')
+    .copy('resources/js/custom.js', 'public/js')
     .sourceMaps();

@@ -4,12 +4,8 @@
 Muertissima
 @endsection
 
-@section('header')
-<div class="row">
-    <div class="col s12 text-center">
-        <img class="header" src="{{ asset('images/logo.jpg') }}" />
-    </div>
-</div>
+@section('meta-description')
+<meta name="description" content="Muertissima est un groupe de Death Metal de la région parisienne, qui allie phases Black et Thrash afin de donner une sonorité Old school efficace et originale à leur musique" />
 @endsection
 
 @section('content')

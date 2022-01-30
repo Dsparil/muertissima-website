@@ -4,12 +4,8 @@
 Muertissima - About us
 @endsection
 
-@section('header')
-<div class="row">
-    <div class="col s12 text-center">
-        <img class="header" src="{{ asset('images/logo.jpg') }}" />
-    </div>
-</div>
+@section('meta-description')
+<meta name="description" content="À propos de Muertissima, bio, membres, partenaires" />
 @endsection
 
 @section('content')

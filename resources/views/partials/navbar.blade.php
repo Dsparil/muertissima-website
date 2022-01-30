@@ -22,7 +22,7 @@
                 <a class="nav-link{{ $page == 'interviews'? ' active' : '' }}" href="{{ route('interviews') }}">💀 Interviews</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link{{ $page == 'music'? ' active' : '' }}" href="{{ route('music') }}">💀 Music</a>
+                <a id="music-link" class="nav-link{{ $page == 'music'? ' active' : '' }}" href="{{ route('music') }}">💀 Music</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link{{ $page == 'products'? ' active' : '' }}" href="{{ route('shop') }}">💀 Shop</a>
