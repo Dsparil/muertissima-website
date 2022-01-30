@@ -7,7 +7,7 @@ Muertissima - EASTER MF EGG
 @section('content')
 <div class="row mt-2">
     <div class="col text-center">
-        <img src="{{ asset('images/pinkpanther.jpg') }}" />
+        <img src="{{ asset('images/pinkpanther.jpg') }}" width="100%" />
     </div>
 </div>
 <div class="row mt-2">
