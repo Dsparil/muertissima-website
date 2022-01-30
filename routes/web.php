@@ -37,7 +37,7 @@ Route::get('/random-quote', function(Request $request) {
     echo Quote::random();
 })->name('random-quote');
 
-Route::post('/easteregg', function() {
+Route::post('/pickle', function() {
     return view('easteregg');
 })->name('easteregg');
 
