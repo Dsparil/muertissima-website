@@ -17,7 +17,6 @@ var crudObject = {
         var items = this.getItems();
 
         for (idx in items) {
-            console.log(items[idx][field]);
             if (items[idx][field] == value) {
                 return items[idx];
             }
