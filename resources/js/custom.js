@@ -33,7 +33,7 @@ $(document).ready(function() {
 
         linkClickCount++;
 
-        if (linkTimeoutId !== null || trueLinkTimeoutId != null) {
+        if (linkTimeoutId !== null || trueLinkTimeoutId !== null) {
             return;
         }
 
