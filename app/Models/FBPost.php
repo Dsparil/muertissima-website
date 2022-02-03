@@ -94,8 +94,7 @@ class FBPost extends AbstractHydratableModel
         if (isset($data->message)) {
             $message       = $data->message;
             $this->title   = substr($message, 0, strpos($message, "\n"));
-            $content       = trim(substr($message, strpos($message, "\n")), "\n");
-            $this->content = preg_replace(self::$urlRegexp, ' ', $content);
+            $this->content = trim(substr($message, strpos($message, "\n")), "\n");
         }
 
         $this->date = date('d/m/Y H:i:s', strtotime($data->created_time));
