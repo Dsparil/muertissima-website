@@ -21,6 +21,8 @@ use Illuminate\Http\Request;
 |
 */
 
+Route::get('.well-known/pki-validation/0F2C6E2856DEAED12E0F5EDB72EB540C.txt', [HomeController::class, 'pki']);
+
 Route::get('/',           [HomeController::class,    'index'])->name('home');
 Route::get('/shows',      [HomeController::class,    'shows'])->name('shows');
 Route::get('/photos',     [HomeController::class,    'photos'])->name('photos');

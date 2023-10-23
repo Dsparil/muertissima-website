@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Support\Facades\Http;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Admin\{Datasheet, BandMember, StuffSection, Stuff, Patchlist, Rider, ScenePlanItem};
@@ -39,6 +40,25 @@ class RiderController extends Controller
     public function generatePDF(Request $request)
     {
         set_time_limit(0);
+/*
+        $auth = Http::post('https://login.pdfbroker.io/connect/token', [
+            'client_id' => '358d4122-9466-4acb-ac59-bf2dcef66d93',
+            'client_secret' => '1525c1343a3147fb9d04db008e8585d1',
+            'grant_type' => 'client_credentials'
+        ]);
+
+        var_dump($auth);
+die;
+
+        $content = Http::post('https://api.pdfbroker.io/api/pdf/wkhtmltopdf', [
+            'url' => null,
+            'htmlBase64String' => view('admin.rider-pdf', $this->getViewData()),
+            'resources' => null
+        ]);
+
+        var_dump($content);
+die;
+*/
         $pdf = PDF::loadView('admin.rider-pdf', $this->getViewData());
 
         return $pdf->download('Fiche technique.pdf');
@@ -74,7 +94,7 @@ class RiderController extends Controller
             'bandMembers'    => BandMember::all(),
             'stuffSections'  => StuffSection::all(),
             'stuff'          => Stuff::all(),
-            'patchlist'      => Patchlist::all(),
+            'patchlist'      => Patchlist::orderBy('input_number')->get(),
             'rider'          => Rider::all(), 
             'scenePlanItems' => ScenePlanItem::all()
         ];

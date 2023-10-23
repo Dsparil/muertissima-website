@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Models\{FBPost, Quote};
 use App\Helpers\{GraphHelper, PartnersHelper};
@@ -12,6 +13,11 @@ class HomeController extends Controller
     public function __construct()
     {
         GraphHelper::initialize();
+    }
+
+    public function pki(Request $request)
+    {
+        return response(Storage::disk('public')->get('cert-validation.txt'), 200)->header('Content-Type', 'text/plain');
     }
 
     public function index(Request $request)
